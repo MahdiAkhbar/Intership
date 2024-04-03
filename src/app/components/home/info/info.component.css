@@ -20,3 +20,18 @@
 .date-box p {
     font-size: 1.2rem;
 }
+
+.info-box {
+    column-gap: 4px;
+}
+
+.bg-gray {
+    background-color: #F1F3F5;
+}
+
+.info-items {
+    border: none;
+    border-radius: 4px;
+    padding: .8rem 1.2rem;
+    font-size: 1.2rem;
+}
