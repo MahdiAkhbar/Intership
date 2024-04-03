@@ -1,0 +1,22 @@
+.search-box {
+    gap: 4px;
+}
+
+.search-input-box {
+    flex-basis: 100%;
+    padding: .8rem 1.2rem;
+}
+
+.search-input {
+    outline: none;
+    border: none;
+    width: 100%;
+}
+
+.price {
+    font-weight: 500;
+}
+
+.date-box p {
+    text-align: center;
+}
