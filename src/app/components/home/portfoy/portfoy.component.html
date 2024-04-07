@@ -53,8 +53,8 @@
           <p
             class="change-finishPrice"
             [ngClass]="{
-              'change-finishPrice-green': row.change.value > 0,
-              'change-finishPrice-red': row.change.value < 0
+              'change-bg-green': row.change.value > 0,
+              'change-bg-red': row.change.value < 0
             }"
           >
             {{ row.change.viewValue }}

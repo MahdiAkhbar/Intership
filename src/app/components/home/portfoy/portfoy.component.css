@@ -61,12 +61,12 @@ td {
     min-width: 35.55px;
 }
 
-.change-finishPrice-green {
+.change-bg-green {
     background-color: #20C997;
     color: #fff;
 }
 
-.change-finishPrice-red {
+.change-bg-red {
     background-color: #FF6B6B;
     color: #fff;
 }
