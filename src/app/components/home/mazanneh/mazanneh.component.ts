@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IMazanneh } from '../../../shared/mazanneh';
+import { IMazanneh } from '../../../shared/interfaces/mazanneh';
 
 @Component({
   selector: 'app-mazanneh',
