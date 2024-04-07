@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Chart } from 'chart.js/auto';
+import { getRelativePosition } from 'chart.js/helpers';
+
 import { IGraphType } from '../../../shared/interfaces/graphType';
 
 @Component({
@@ -6,16 +9,16 @@ import { IGraphType } from '../../../shared/interfaces/graphType';
   templateUrl: './graph.component.html',
   styleUrl: './graph.component.css'
 })
-export class GraphComponent {
+export class GraphComponent implements OnInit {
 
   graphType: IGraphType[] = [
-    { value: 'khatti-0', viewValue: 'خطی' },
-    { value: 'milei-1', viewValue: 'میله ای' },
+    { value: 'line', viewValue: 'خطی' },
+    { value: 'bar', viewValue: 'میله ای' },
     { value: 'shami-2', viewValue: 'شمعی' }
   ];
   graphDuration: IGraphType[] = [
-    { value: 'shami-1', viewValue: 'امروز' },
-    { value: 'shami-2', viewValue: 'هفته جاری' },
+    { value: 'day-1', viewValue: 'امروز' },
+    { value: 'week-2', viewValue: 'هفته جاری' },
     { value: 'shami-3', viewValue: 'ماهانه' },
     { value: 'shami-4', viewValue: 'سالانه' }
   ];
@@ -25,8 +28,40 @@ export class GraphComponent {
     { value: 'shami-3', viewValue: '۱ ساعت' }
   ];
 
-  sellectedGraphType: string = this.graphType[0].value;
+  chartData = [
+    { month: 'فروردین', value: '800' },
+    { month: 'اردیبهشت', value: '500' },
+    { month: 'خرداد', value: '100' },
+    { month: 'تیر', value: '300' },
+  ]
+
+  sellectedGraphType: any = this.graphType[0].value;
   sellectedGraphDuration: string = this.graphDuration[0].value;
   sellectedGraphTimeframe: string = this.graphTimeframe[0].value;
 
+  public chart: any;
+
+  ngOnInit(): void {
+    this.createChart();
+
+  }
+
+  createChart() {
+    this.chart = new Chart('MyChart', {
+      type: this.sellectedGraphType,
+      data: {
+        labels: this.chartData.map(row => row.month),
+        datasets: [
+          {
+            label: '',
+            data: this.chartData.map(row => row.value),
+            backgroundColor: 'blue'
+          }
+        ]
+      },
+      options: {
+        aspectRatio: 2.5,
+      }
+    });
+  }
 }

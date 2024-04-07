@@ -1,42 +1,37 @@
 <div class="container shadow-1">
-  <div class="header flex justify-between">
-    <div class="right">
-      <!-- Graph Type -->
-      <div>
-        <mat-form-field>
-          <mat-label>نوع نمودار</mat-label>
-          <mat-select [(value)]="sellectedGraphType">
-            @for (item of graphType; track item) {
-            <mat-option [value]="item.value">{{ item.viewValue }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-      </div>
-    </div>
-    <div class="flex left">
-      <!-- Graph Duration -->
-      <div>
-        <mat-form-field>
-          <mat-label>بازه</mat-label>
-          <mat-select [(value)]="sellectedGraphDuration">
-            @for (item of graphDuration; track item) {
-            <mat-option [value]="item.value">{{ item.viewValue }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <!-- Graph Timeframe -->
-      <div>
-        <mat-form-field>
-          <mat-label>تایم فریم</mat-label>
-          <mat-select [(value)]="sellectedGraphTimeframe">
-            @for (item of graphTimeframe; track item) {
-            <mat-option [value]="item.value">{{ item.viewValue }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-      </div>
-    </div>
+  <div class="header flex justify-between flex-gap-4">
+    <!-- Graph Type -->
+    <mat-form-field>
+      <mat-label>نوع نمودار</mat-label>
+      <mat-select
+        [(value)]="sellectedGraphType"
+        (selectionChange)="createChart()"
+      >
+        @for (item of graphType; track item) {
+        <mat-option [value]="item.value">{{ item.viewValue }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <!-- Graph Duration -->
+    <mat-form-field>
+      <mat-label>بازه</mat-label>
+      <mat-select [(value)]="sellectedGraphDuration">
+        @for (item of graphDuration; track item) {
+        <mat-option [value]="item.value">{{ item.viewValue }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <!-- Graph Timeframe -->
+    <mat-form-field>
+      <mat-label>تایم فریم</mat-label>
+      <mat-select [(value)]="sellectedGraphTimeframe">
+        @for (item of graphTimeframe; track item) {
+        <mat-option [value]="item.value">{{ item.viewValue }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
   </div>
-  <div class="graph"></div>
+  <div class="graph">
+    <canvas id="MyChart">{{ chart }}</canvas>
+  </div>
 </div>
