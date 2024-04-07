@@ -76,8 +76,13 @@ body {
 .container {
     padding: 8px;
     border: none;
+    border-radius: 4px;
     box-shadow: 0 2px 6px 0px rgba(0, 0, 0, 0.089);
 }
+
+/* //////////////// */
+/* FlexBox */
+/* //////////////// */
 
 .flex {
     display: flex;
@@ -95,8 +100,64 @@ body {
     justify-content: space-between;
 }
 
+.justify-around {
+    justify-content: space-around;
+}
+
 .align-center {
     align-items: center;
+}
+
+.flex-gap-1 {
+    gap: 1px;
+}
+
+.flex-gap-4 {
+    gap: 4px;
+}
+
+.flex-gap-8 {
+    gap: 8px;
+}
+
+.flex-gap-12 {
+    gap: 12px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.flex-grow-0 {
+    flex-grow: 0;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.flex-grow-2 {
+    flex-grow: 2;
+}
+
+.flex-grow-3 {
+    flex-grow: 1;
+}
+
+/* //////////////// */
+/* CSS Grid */
+/* //////////////// */
+
+.grid {
+    display: grid;
+}
+
+.grid-2 {
+    grid-template-columns: 1fr 1fr;
+}
+
+.grid-gap-4 {
+    gap: 4px;
 }
 
 /* //////////////// */
@@ -123,7 +184,23 @@ body {
     padding: 8px;
 }
 
-/* MARGIN */
+/* MARGIN & PADDING */
+
+.p-0 {
+    padding: 0;
+}
+
+.p-8 {
+    padding: 8px;
+}
+
+.mb-4 {
+    margin-bottom: 4px;
+}
+
+.mb-8 {
+    margin-bottom: 4px;
+}
 
 .mb-12 {
     margin-bottom: 12px;
@@ -133,4 +210,8 @@ body {
 
 .shadow-1 {
     box-shadow: 0 2px 6px 0px rgba(0, 0, 0, 0.089);
+}
+
+.shadow-2 {
+    box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 0.2);
 }
