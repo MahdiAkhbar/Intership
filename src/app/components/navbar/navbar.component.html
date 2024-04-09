@@ -2,7 +2,7 @@
   <nav class="flex justify-between">
     <div>
       <button mat-button><p class="logo">IS</p></button>
-      <button mat-button>
+      <button mat-button [routerLink]="['/home']">
         <div class="flex align-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +23,7 @@
       </button>
     </div>
     <div>
-      <button mat-button>
+      <button mat-button [routerLink]="['/profile']">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -39,7 +39,7 @@
           />
         </svg>
       </button>
-      <button mat-button>
+      <button mat-button [routerLink]="['/login']">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
