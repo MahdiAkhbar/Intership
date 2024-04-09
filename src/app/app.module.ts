@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/\material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs'
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input'
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +21,12 @@ import { WatchlistComponent } from './components/home/watchlist/watchlist.compon
 import { BuySellButtonsComponent } from './components/home/buy-sell-buttons/buy-sell-buttons.component';
 import { CategoryPipe } from './shared/pipes/category.pipe';
 import { SearchPipe } from './shared/pipes/search.pipe';
+import { ProfileComponent } from './components/profile/profile.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { ProfileSectionComponent } from './components/profile/profile-section/profile-section.component';
+import { ChangePasswordSectionComponent } from './components/profile/change-password-section/change-password-section.component';
+import { BottomSheetComponent } from './components/bottom-sheet/bottom-sheet.component';
 
 @NgModule({
   declarations: [
@@ -34,13 +40,20 @@ import { SearchPipe } from './shared/pipes/search.pipe';
     WatchlistComponent,
     BuySellButtonsComponent,
     CategoryPipe,
-    SearchPipe
+    SearchPipe,
+    ProfileComponent,
+    LoginComponent,
+    SignupComponent,
+    ProfileSectionComponent,
+    ChangePasswordSectionComponent,
+    BottomSheetComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatFormFieldModule,
     MatSelectModule,
