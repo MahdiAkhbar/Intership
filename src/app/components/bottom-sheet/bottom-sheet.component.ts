@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { BuySellButtonsComponent } from '../home/buy-sell-buttons/buy-sell-buttons.component';
-import { BuySheetComponent } from './buy-sheet/buy-sheet.component';
-import { SellSheetComponent } from './sell-sheet/sell-sheet.component';
 
 @Component({
   selector: 'app-bottom-sheet',
