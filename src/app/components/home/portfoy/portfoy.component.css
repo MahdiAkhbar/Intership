@@ -20,6 +20,7 @@ table {
 
 .table-head-item-text {
     padding: .8rem 0;
+    text-align: center;
 }
 
 td {
