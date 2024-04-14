@@ -1,7 +1,25 @@
 <div class="flex flex-column flex-gap-12 justify-center bottom-sheet">
   <div class="buttons flex flex-gap-4">
-    <button class="btn-c btn-buy" (click)="formType('buy')">خرید</button>
-    <button class="btn-c btn-sell" (click)="formType('sell')">فروش</button>
+    <button
+      class="btn-c"
+      (click)="formType('buy')"
+      [ngClass]="{
+        'btn-buy-fill': orderType === 'buy',
+        'btn-buy-out': orderType === 'sell'
+      }"
+    >
+      خرید
+    </button>
+    <button
+      class="btn-c"
+      (click)="formType('sell')"
+      [ngClass]="{
+        'btn-sell-fill': orderType === 'sell',
+        'btn-sell-out': orderType === 'buy'
+      }"
+    >
+      فروش
+    </button>
   </div>
   <form>
     <div class="form-inputs flex flex-column flex-gap-12 mb-4">
@@ -115,7 +133,16 @@
       >
         بستن
       </button>
-      <button type="submit" class="btn-c btn-submit">ارسال</button>
+      <button
+        type="submit"
+        class="btn-c"
+        [ngClass]="{
+          'btn-buy-fill': orderType === 'buy',
+          'btn-sell-fill': orderType === 'sell'
+        }"
+      >
+        ارسال
+      </button>
     </div>
   </form>
 </div>
