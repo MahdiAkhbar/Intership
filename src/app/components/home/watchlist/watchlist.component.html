@@ -69,22 +69,22 @@
       <thead class="table-head light-text">
         <tr>
           <th class="table-head-item">
-            <div class="table-head-item-text">
+            <div class="table-head-item-text text-end">
               <p class="name">نماد</p>
             </div>
           </th>
           <th class="table-head-item">
-            <div class="table-head-item-text">
+            <div class="table-head-item-text text-start">
               <p class="last-price">آخرین قیمت</p>
             </div>
           </th>
           <th class="table-head-item">
-            <div class="table-head-item-text">
+            <div class="table-head-item-text text-end">
               <p class="profit-or-loss">٪</p>
             </div>
           </th>
           <th class="table-head-item">
-            <div class="table-head-item-text">
+            <div class="table-head-item-text text-start">
               <p class="current-value">حجم معاملات</p>
             </div>
           </th>
@@ -99,14 +99,14 @@
         >
           <td class="text-center flex align-center flex-gap-8">
             <div class="green-box"></div>
-            <div class="flex flex-column flex-gap-4">
+            <div class="text-end">
               <p>{{ item.name }}</p>
             </div>
           </td>
-          <td class="text-center">
+          <td class="text-start ps-4">
             <p>{{ item.lastPrice }}</p>
           </td>
-          <td class="text-center">
+          <td class="text-end">
             <p
               class="change-finishPrice"
               [ngClass]="{
@@ -117,7 +117,7 @@
               {{ item.change.viewValue }}
             </p>
           </td>
-          <td class="text-center">{{ item.volume }}</td>
+          <td class="text-start ps-4">{{ item.volume }}</td>
         </tr>
       </tbody>
     </table>
