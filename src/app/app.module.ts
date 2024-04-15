@@ -27,6 +27,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ProfileSectionComponent } from './components/profile/profile-section/profile-section.component';
 import { ChangePasswordSectionComponent } from './components/profile/change-password-section/change-password-section.component';
 import { BottomSheetComponent } from './components/bottom-sheet/bottom-sheet.component';
+import { TradeComponent } from './components/home/trade/trade.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { BottomSheetComponent } from './components/bottom-sheet/bottom-sheet.com
     SignupComponent,
     ProfileSectionComponent,
     ChangePasswordSectionComponent,
-    BottomSheetComponent
+    BottomSheetComponent,
+    TradeComponent
   ],
   imports: [
     BrowserModule,
