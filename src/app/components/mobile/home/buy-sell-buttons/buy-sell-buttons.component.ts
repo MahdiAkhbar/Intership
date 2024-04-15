@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { BottomSheetComponent } from '../../bottom-sheet/bottom-sheet.component';
-import { OrderService } from '../../../shared/services/order.service';
+import { BottomSheetComponent } from '../../../bottom-sheet/bottom-sheet.component';
+import { OrderService } from '../../../..//shared/services/order.service';
 
 @Component({
   selector: 'app-buy-sell-buttons',

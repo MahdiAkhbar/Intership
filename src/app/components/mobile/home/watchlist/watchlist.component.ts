@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IWatchlist } from '../../../shared/interfaces/watchList';
+import { IWatchlist } from '../../../../shared/interfaces/watchList';
 
 @Component({
   selector: 'app-watchlist',

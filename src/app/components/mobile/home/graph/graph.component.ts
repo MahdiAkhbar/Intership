@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import { getRelativePosition } from 'chart.js/helpers';
 
-import { IGraphType } from '../../../shared/interfaces/graphType';
+import { IGraphType } from '../../../../shared/interfaces/graphType';
 
 @Component({
   selector: 'app-graph',

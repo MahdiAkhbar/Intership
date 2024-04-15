@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IPortfoy } from '../../../shared/interfaces/portfoy';
+import { IPortfoy } from '../../../../shared/interfaces/portfoy';
 
 @Component({
   selector: 'app-portfoy',

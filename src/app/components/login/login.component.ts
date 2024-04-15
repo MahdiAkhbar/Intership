@@ -24,10 +24,10 @@ export class LoginComponent implements OnInit {
   }
 
   goToHome() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/m']);
   }
 
   goToSignup() {
-    this.router.navigate(['/signup']);
+    this.router.navigate(['/m/signup']);
   }
 }
