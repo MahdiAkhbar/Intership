@@ -12,13 +12,13 @@ import { MatInputModule } from '@angular/material/input'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { InfoComponent } from './components/home/info/info.component';
-import { HomeComponent } from './components/home/home.component';
-import { MazannehComponent } from './components/home/mazanneh/mazanneh.component';
-import { GraphComponent } from './components/home/graph/graph.component';
-import { PortfoyComponent } from './components/home/portfoy/portfoy.component';
-import { WatchlistComponent } from './components/home/watchlist/watchlist.component';
-import { BuySellButtonsComponent } from './components/home/buy-sell-buttons/buy-sell-buttons.component';
+import { InfoComponent } from './components/mobile/home/info/info.component';
+import { HomeComponent } from './components/mobile/home/home.component';
+import { MazannehComponent } from './components/mobile/home/mazanneh/mazanneh.component';
+import { GraphComponent } from './components/mobile/home/graph/graph.component';
+import { PortfoyComponent } from './components/mobile/home/portfoy/portfoy.component';
+import { WatchlistComponent } from './components/mobile/home/watchlist/watchlist.component';
+import { BuySellButtonsComponent } from './components/mobile/home/buy-sell-buttons/buy-sell-buttons.component';
 import { CategoryPipe } from './shared/pipes/category.pipe';
 import { SearchPipe } from './shared/pipes/search.pipe';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -27,7 +27,12 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ProfileSectionComponent } from './components/profile/profile-section/profile-section.component';
 import { ChangePasswordSectionComponent } from './components/profile/change-password-section/change-password-section.component';
 import { BottomSheetComponent } from './components/bottom-sheet/bottom-sheet.component';
-import { TradeComponent } from './components/home/trade/trade.component';
+import { MTradeComponent } from './components/mobile/home/m-trade/m-trade.component';
+import { MobileComponent } from './components/mobile/mobile.component';
+import { DesktopComponent } from './components/desktop/desktop.component';
+import { DTradeComponent } from './components/desktop/d-trade/d-trade.component';
+import { DLoginComponent } from './components/desktop/d-login/d-login.component';
+import { DSignupComponent } from './components/desktop/d-signup/d-signup.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +53,12 @@ import { TradeComponent } from './components/home/trade/trade.component';
     ProfileSectionComponent,
     ChangePasswordSectionComponent,
     BottomSheetComponent,
-    TradeComponent
+    MTradeComponent,
+    MobileComponent,
+    DesktopComponent,
+    DTradeComponent,
+    DLoginComponent,
+    DSignupComponent
   ],
   imports: [
     BrowserModule,
