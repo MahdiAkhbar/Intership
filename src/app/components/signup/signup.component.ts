@@ -23,10 +23,10 @@ export class SignupComponent {
   }
 
   goToHome() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/m/home']);
   }
 
   goToLogin() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/m/login']);
   }
 }
