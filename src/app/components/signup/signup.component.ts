@@ -22,6 +22,10 @@ export class SignupComponent {
     console.log(this.loginForm.value);
   }
 
+  goToHome() {
+    this.router.navigate(['/home']);
+  }
+
   goToLogin() {
     this.router.navigate(['/login']);
   }
