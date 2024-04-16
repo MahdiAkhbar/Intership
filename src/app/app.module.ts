@@ -34,6 +34,7 @@ import { DTradeComponent } from './components/desktop/d-trade/d-trade.component'
 import { DLoginComponent } from './components/desktop/d-login/d-login.component';
 import { DSignupComponent } from './components/desktop/d-signup/d-signup.component';
 import { DNavbarComponent } from './components/desktop/d-navbar/d-navbar.component';
+import { DHomeComponent } from './components/desktop/d-home/d-home.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { DNavbarComponent } from './components/desktop/d-navbar/d-navbar.compone
     DTradeComponent,
     DLoginComponent,
     DSignupComponent,
-    DNavbarComponent
+    DNavbarComponent,
+    DHomeComponent
   ],
   imports: [
     BrowserModule,
