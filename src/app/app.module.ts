@@ -33,6 +33,7 @@ import { DesktopComponent } from './components/desktop/desktop.component';
 import { DTradeComponent } from './components/desktop/d-trade/d-trade.component';
 import { DLoginComponent } from './components/desktop/d-login/d-login.component';
 import { DSignupComponent } from './components/desktop/d-signup/d-signup.component';
+import { DNavbarComponent } from './components/desktop/d-navbar/d-navbar.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { DSignupComponent } from './components/desktop/d-signup/d-signup.compone
     DesktopComponent,
     DTradeComponent,
     DLoginComponent,
-    DSignupComponent
+    DSignupComponent,
+    DNavbarComponent
   ],
   imports: [
     BrowserModule,
