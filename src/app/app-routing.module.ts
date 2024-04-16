@@ -7,6 +7,8 @@ import { SignupComponent } from './components/signup/signup.component';
 import { MTradeComponent } from './components/mobile/home/m-trade/m-trade.component';
 import { AppComponent } from './app.component';
 import { DTradeComponent } from './components/desktop/d-trade/d-trade.component';
+import { DHomeComponent } from './components/desktop/d-home/d-home.component';
+import { DLoginComponent } from './components/desktop/d-login/d-login.component';
 
 const routes: Routes = [
   { path: '', component: AppComponent, pathMatch: 'full' },
@@ -19,9 +21,10 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'd', component: HomeComponent, children: [
+    path: 'd', component: DHomeComponent, children: [
       { path: '', component: DTradeComponent },
-      { path: 'login', component: LoginComponent },
+      { path: 'login', component: DLoginComponent },
+      { path: 'profile', component: ProfileComponent },
     ]
   },
   { path: '**', redirectTo: '' },
