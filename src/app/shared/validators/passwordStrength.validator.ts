@@ -9,7 +9,7 @@ export function passwordStrengthValidator(): ValidatorFn {
 
         const hasLowerCase = /[a-z]/.test(value);
         const hasUpperCase = /[A-Z]/.test(value);
-        const hasNumeric = /[1-9]/.test(value);
+        const hasNumeric = /[0-9]/.test(value);
 
         const passwordValid = hasLowerCase && hasUpperCase && hasNumeric;
 
