@@ -18,7 +18,7 @@
             height="36.9235"
             rx="18.4618"
             transform="rotate(0.118781 14.0765 11)"
-            fill="#0CA678"
+            fill="#5F3DC4"
           />
         </g>
         <path
@@ -193,18 +193,72 @@
             name="username"
             placeholder="لطفا نام کاربری خود را وارد کنید"
             formControlName="username"
+            #username
           />
+          <p
+            class="invalid-value"
+            *ngIf="
+              loginForm.controls['username'].touched &&
+              !loginForm.controls['username'].valid
+            "
+          >
+            این بخش باید پر شود
+          </p>
         </div>
         <div class="form-inputs">
           <label for="password" class="input-label">رمز ورود</label>
           <input
-            type="password"
+            type="text"
             id="password"
             class="input"
             name="password"
             placeholder="لطفا رمز عبور خود را وارد کنید"
             formControlName="password"
           />
+          <p
+            class="invalid-value"
+            *ngIf="
+              loginForm.controls['password'].touched &&
+                (loginForm.controls['password'].value === '' ||
+                  loginForm.controls['password'].value === null);
+              else minLength
+            "
+          >
+            این بخش باید پر شود
+          </p>
+          <ng-template #minLength>
+            <ul
+              class="invalid-value"
+              *ngIf="
+                (loginForm.controls['password'].touched &&
+                  !loginForm.controls['password'].valid) ||
+                (loginForm.controls['password'].dirty &&
+                  !loginForm.controls['password'].valid)
+              "
+            >
+              <li
+                *ngIf="loginForm.controls['password'].errors?.['passwordStrength'].hasLowerCase"
+              >
+                حداقل از یک حرف کوچک باید استفاده شود
+              </li>
+
+              <li
+                *ngIf="loginForm.controls['password'].errors?.['passwordStrength'].hasUpperCase"
+              >
+                حداقل از یک حرف بزرگ باید استفاده شود
+              </li>
+
+              <li
+                *ngIf="loginForm.controls['password'].errors?.['passwordStrength'].hasNumeric"
+              >
+                حداقل از یک عدد باید استفاده شود
+              </li>
+
+              <li *ngIf="loginForm.controls['password'].errors?.['minlength']">
+                حداقل باید ۶ کاراکتر وارد شود
+              </li>
+            </ul>
+          </ng-template>
         </div>
         <div class="form-inputs">
           <label for="captcha" class="input-label">کد امنیتی</label>
@@ -244,6 +298,15 @@
               />
             </div>
           </div>
+          <p
+            class="invalid-value"
+            *ngIf="
+              loginForm.controls['captcha'].touched &&
+              !loginForm.controls['captcha'].valid
+            "
+          >
+            این بخش باید پر شود
+          </p>
         </div>
         <button type="submit" class="submit-btn">ورود</button>
       </form>
