@@ -161,7 +161,12 @@
         </span> -->
       </div>
     </div>
-    <button type="submit" class="login-btn" [disabled]="!loginForm.valid">
+    <button
+      type="submit"
+      class="submit-btn"
+      [disabled]="!loginForm.valid"
+      (click)="goToHome()"
+    >
       ورود
     </button>
   </form>

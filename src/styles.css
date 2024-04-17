@@ -77,7 +77,7 @@ body {
     font-size: 1.6rem;
 }
 
-.container {
+.container-c {
     padding: 8px;
     border: none;
     border-radius: 4px;
@@ -114,6 +114,10 @@ body {
 
 .flex-gap-1 {
     gap: 1px;
+}
+
+.flex-gap-2 {
+    gap: 2px;
 }
 
 .flex-gap-4 {
@@ -189,6 +193,8 @@ body {
     background-color: #22B8CF;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
     padding: 8px;
     transition: all 300ms;
 

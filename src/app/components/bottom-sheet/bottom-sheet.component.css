@@ -18,18 +18,28 @@
     background-color: transparent;
 }
 
-.btn-buy {
+.btn-buy-fill {
     background-color: #12B886;
     color: #fff;
+}
+
+.btn-buy-out {
+    background-color: #fff;
+    color: #087F5B;
 }
 
 .btn-buy-out .btn-buy:focus {
     background-color: #20c997;
 }
 
-.btn-sell {
+.btn-sell-fill {
     background-color: #C92A2A;
     color: #fff;
+}
+
+.btn-sell-out {
+    background-color: #fff;
+    color: #C92A2A;
 }
 
 .form-inputs {
@@ -98,11 +108,6 @@ label {
     height: 100%;
     display: flex;
     align-items: center;
-}
-
-.btn-submit {
-    background-color: #12B886;
-    color: #fff;
 }
 
 .btn-cancle {

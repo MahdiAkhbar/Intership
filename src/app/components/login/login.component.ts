@@ -23,7 +23,11 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm.value);
   }
 
+  goToHome() {
+    this.router.navigate(['/m']);
+  }
+
   goToSignup() {
-    this.router.navigate(['/signup']);
+    this.router.navigate(['/m/signup']);
   }
 }
