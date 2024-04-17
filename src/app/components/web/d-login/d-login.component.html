@@ -227,6 +227,40 @@
             این بخش باید پر شود
           </p>
           <ng-template #minLength>
+            <!-- <ul
+              class="invalid-value"
+              *ngIf="
+                (loginForm.controls['password'].touched &&
+                  !loginForm.controls['password'].valid) ||
+                (loginForm.controls['password'].dirty &&
+                  !loginForm.controls['password'].valid)
+              "
+            >
+              <li
+                *ngIf="loginForm.controls['password'].errors?.['passwordValid']"
+              >
+                حداقل از یک حرف کوچک باید استفاده شود
+              </li>
+
+              <li
+                *ngIf="loginForm.controls['password'].errors?.['passwordValid']"
+              >
+                حداقل از یک حرف بزرگ باید استفاده شود
+              </li>
+
+              <li
+                *ngIf="loginForm.controls['password'].errors?.['passwordValid']"
+              >
+                حداقل از یک عدد باید استفاده شود
+              </li>
+
+              <li *ngIf="loginForm.controls['password'].errors?.['minlength']">
+                حداقل باید ۶ کاراکتر وارد شود
+              </li>
+              <li *ngIf="loginForm.controls['password'].errors?.['minlength']">
+                حداقل باید ۶ کاراکتر وارد شود
+              </li>
+            </ul> -->
             <ul
               class="invalid-value"
               *ngIf="
@@ -254,7 +288,9 @@
                 حداقل از یک عدد باید استفاده شود
               </li>
 
-              <li *ngIf="loginForm.controls['password'].errors?.['minlength']">
+              <li
+                *ngIf="loginForm.controls['password'].errors?.['passwordStrength'].charLength"
+              >
                 حداقل باید ۶ کاراکتر وارد شود
               </li>
             </ul>

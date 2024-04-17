@@ -17,7 +17,7 @@ export class DLoginComponent implements OnInit {
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       'username': new FormControl(null, Validators.required),
-      'password': new FormControl(null, [Validators.required, passwordStrengthValidator(), minlengthValidator()]),
+      'password': new FormControl(null, [Validators.required, passwordStrengthValidator()]),
       'captcha': new FormControl(null, Validators.required)
     });
   }

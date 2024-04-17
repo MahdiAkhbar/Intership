@@ -29,12 +29,12 @@ import { ChangePasswordSectionComponent } from './components/profile/change-pass
 import { BottomSheetComponent } from './components/bottom-sheet/bottom-sheet.component';
 import { MTradeComponent } from './components/mobile/home/m-trade/m-trade.component';
 import { MobileComponent } from './components/mobile/mobile.component';
-import { DesktopComponent } from './components/desktop/desktop.component';
-import { DTradeComponent } from './components/desktop/d-trade/d-trade.component';
-import { DLoginComponent } from './components/desktop/d-login/d-login.component';
-import { DSignupComponent } from './components/desktop/d-signup/d-signup.component';
-import { DNavbarComponent } from './components/desktop/d-navbar/d-navbar.component';
-import { DHomeComponent } from './components/desktop/d-home/d-home.component';
+import { DesktopComponent } from './components/web/desktop.component';
+import { DTradeComponent } from './components/web/d-trade/d-trade.component';
+import { DLoginComponent } from './components/web/d-login/d-login.component';
+import { DSignupComponent } from './components/web/d-signup/d-signup.component';
+import { DNavbarComponent } from './components/web/d-navbar/d-navbar.component';
+import { DHomeComponent } from './components/web/d-home/d-home.component';
 
 @NgModule({
   declarations: [
