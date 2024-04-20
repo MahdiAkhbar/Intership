@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { passwordStrengthValidator } from '../../../shared/validators/passwordStrength.validator';
 
 @Component({
   selector: 'app-change-password-section',
@@ -13,8 +14,9 @@ export class ChangePasswordSectionComponent implements OnInit {
 
   ngOnInit(): void {
     this.changePassForm = new FormGroup({
-      'email': new FormControl(null, Validators.required),
-      'password': new FormControl(null, Validators.required)
+      'current': new FormControl(null, Validators.required),
+      'newPass': new FormControl(null, [Validators.required, passwordStrengthValidator()]),
+      'repeatNewPass': new FormControl(null, Validators.required)
     })
   }
 
