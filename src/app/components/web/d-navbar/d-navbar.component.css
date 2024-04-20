@@ -5,13 +5,8 @@
 
 span,
 p {
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #fff;
-}
-
-button {
-    min-width: fit-content;
-    height: fit-content;
 }
 
 .logo {
@@ -19,8 +14,8 @@ button {
 }
 
 .icons {
-    width: 1.4rem;
-    height: 1.4rem;
+    width: 2rem;
+    height: 2rem;
 }
 
 .icon-exchange {
@@ -29,5 +24,5 @@ button {
 }
 
 .profile-text {
-    font-size: .8rem;
+    font-size: 1rem;
 }
