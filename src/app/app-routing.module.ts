@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'm/login', component: LoginComponent },
 
   {
-    path: 'd', component: DLoginComponent, children: [
+    path: 'd', component: DHomeComponent, children: [
       { path: '', component: DTradeComponent },
       { path: 'profile', component: ProfileComponent },
     ]
