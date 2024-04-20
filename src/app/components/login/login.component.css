@@ -124,18 +124,3 @@ p {
 .signup-text:active {
     color: #6e50c9;
 }
-
-/********************/
-/* HELPERS */
-/********************/
-
-.is-invalid {
-    border: 1px solid #FA5252;
-}
-
-.is-invalid-text {
-    font-size: 1.2rem;
-    color: #FA5252;
-    border-bottom-color: #f00;
-    margin-top: 1rem;
-}
