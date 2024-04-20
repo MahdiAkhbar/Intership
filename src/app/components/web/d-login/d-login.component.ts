@@ -17,7 +17,7 @@ export class DLoginComponent implements OnInit {
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       'username': new FormControl(null, Validators.required),
-      'password': new FormControl(null, [Validators.required, passwordStrengthValidator()]),
+      'password': new FormControl(null, Validators.required),
       'captcha': new FormControl(null, Validators.required)
     });
   }
@@ -34,7 +34,7 @@ export class DLoginComponent implements OnInit {
 
     if (this.loginForm.valid) {
       this.loginForm.reset();
-      this.router.navigate(['/']);
+      this.router.navigate(['']);
     }
   }
 

@@ -219,48 +219,11 @@
             class="invalid-value"
             *ngIf="
               loginForm.controls['password'].touched &&
-                (loginForm.controls['password'].value === '' ||
-                  loginForm.controls['password'].value === null);
-              else wrongPassMessages
+              !loginForm.controls['password'].valid
             "
           >
             این بخش باید پر شود
           </p>
-          <ng-template #wrongPassMessages>
-            <ul
-              class="invalid-value"
-              *ngIf="
-                (loginForm.controls['password'].touched &&
-                  !loginForm.controls['password'].valid) ||
-                (loginForm.controls['password'].dirty &&
-                  !loginForm.controls['password'].valid)
-              "
-            >
-              <li
-                *ngIf="loginForm.controls['password'].errors?.['passwordStrength'].hasLowerCase"
-              >
-                حداقل از یک حرف کوچک باید استفاده شود
-              </li>
-
-              <li
-                *ngIf="loginForm.controls['password'].errors?.['passwordStrength'].hasUpperCase"
-              >
-                حداقل از یک حرف بزرگ باید استفاده شود
-              </li>
-
-              <li
-                *ngIf="loginForm.controls['password'].errors?.['passwordStrength'].hasNumeric"
-              >
-                حداقل از یک عدد باید استفاده شود
-              </li>
-
-              <li
-                *ngIf="loginForm.controls['password'].errors?.['passwordStrength'].charLength"
-              >
-                حداقل باید ۶ کاراکتر وارد شود
-              </li>
-            </ul>
-          </ng-template>
         </div>
         <div class="form-inputs">
           <label for="captcha" class="input-label">کد امنیتی</label>
