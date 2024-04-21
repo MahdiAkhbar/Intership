@@ -35,6 +35,11 @@ import { DLoginComponent } from './components/web/d-login/d-login.component';
 import { DSignupComponent } from './components/web/d-signup/d-signup.component';
 import { DNavbarComponent } from './components/web/d-navbar/d-navbar.component';
 import { DHomeComponent } from './components/web/d-home/d-home.component';
+import { DMazannehComponent } from './components/web/d-home/d-mazanneh/d-mazanneh.component';
+import { DWatchlistComponent } from './components/web/d-home/d-watchlist/d-watchlist.component';
+import { DExchangeComponent } from './components/web/d-home/d-exchange/d-exchange.component';
+import { DChartComponent } from './components/web/d-home/d-chart/d-chart.component';
+import { DPortfoyComponent } from './components/web/d-home/d-portfoy/d-portfoy.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +67,12 @@ import { DHomeComponent } from './components/web/d-home/d-home.component';
     DLoginComponent,
     DSignupComponent,
     DNavbarComponent,
-    DHomeComponent
+    DHomeComponent,
+    DMazannehComponent,
+    DWatchlistComponent,
+    DExchangeComponent,
+    DChartComponent,
+    DPortfoyComponent
   ],
   imports: [
     BrowserModule,

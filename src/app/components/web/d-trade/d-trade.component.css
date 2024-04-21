@@ -1,4 +1,26 @@
 .trade-container {
     height: 100%;
-    background-color: cyan;
+    background-color: #F1F3F5;
+    display: grid;
+    gap: 4px;
+    grid-template-columns: 3fr 3fr 2fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    padding: .9rem;
+}
+
+.info {}
+
+.mazanneh {}
+
+.watch {
+    grid-column: 3 / 4;
+    grid-row: 1 / 3;
+}
+
+.exchange {}
+
+.chart {}
+
+.portfoy {
+    grid-column: 1 / -1;
 }
