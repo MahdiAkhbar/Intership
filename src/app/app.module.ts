@@ -40,6 +40,7 @@ import { DWatchlistComponent } from './components/web/d-home/d-watchlist/d-watch
 import { DExchangeComponent } from './components/web/d-home/d-exchange/d-exchange.component';
 import { DChartComponent } from './components/web/d-home/d-chart/d-chart.component';
 import { DPortfoyComponent } from './components/web/d-home/d-portfoy/d-portfoy.component';
+import { DInfoComponent } from './components/web/d-home/d-info/d-info.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { DPortfoyComponent } from './components/web/d-home/d-portfoy/d-portfoy.c
     DSignupComponent,
     DNavbarComponent,
     DHomeComponent,
+    DInfoComponent,
     DMazannehComponent,
     DWatchlistComponent,
     DExchangeComponent,
