@@ -1,1 +1,36 @@
-<p>d-mazanneh works!</p>
+<div class="mazanneh-container flex flex-column h-100">
+  <!-- HEADER -->
+  <div class="flex mazanneh-header-container align-center">
+    <div class="header header-right flex align-center h-100 w-50">
+      <p class="header-item header-count">تعداد</p>
+      <p class="header-item header-volume">حجم</p>
+      <p class="header-item header-price">قیمت</p>
+    </div>
+    <div class="header header-left flex align-center h-100 w-50">
+      <p class="header-item header-price">قیمت</p>
+      <p class="header-item header-volume">حجم</p>
+      <p class="header-item header-count">تعداد</p>
+    </div>
+  </div>
+  <!-- BODY -->
+  <div class="flex flex-gap-4 h-100">
+    <div class="body body-right flex flex-column h-100">
+      @for (item of sellData; track item) {
+      <div class="body-item flex h-100">
+        <p class="body-item-text body-item-count">{{ item.count }}</p>
+        <p class="body-item-text body-item-volume-right">{{ item.volume }}</p>
+        <p class="body-item-text body-item-price">{{ item.price }}</p>
+      </div>
+      }
+    </div>
+    <div class="body body-left flex flex-column h-100">
+      @for (item of sellData; track item) {
+      <div class="body-item flex h-100">
+        <p class="body-item-text body-item-price">{{ item.price }}</p>
+        <p class="body-item-text body-item-volume-left">{{ item.volume }}</p>
+        <p class="body-item-text body-item-count">{{ item.count }}</p>
+      </div>
+      }
+    </div>
+  </div>
+</div>
