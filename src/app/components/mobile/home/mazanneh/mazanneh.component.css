@@ -11,6 +11,32 @@
     padding: .8rem 0;
     flex-grow: 1;
     text-align: center;
+    align-content: center;
+    color: #444;
+}
+
+.header-count {
+    flex-grow: 0;
+    flex-basis: 25%;
+}
+
+.header-volume {
+    flex-grow: 1;
+}
+
+.header-left .header-volume {
+    text-align: end;
+    padding-left: 4%;
+}
+
+.header-right .header-volume {
+    text-align: start;
+    padding-right: 4%;
+}
+
+.header-price {
+    flex-grow: 0;
+    flex-basis: 25%;
 }
 
 .header-right {
@@ -44,4 +70,32 @@
 .body-item {
     justify-content: space-between;
     font-size: 1.2rem;
+}
+
+.body-item-text {
+    align-content: center;
+}
+
+.body-item-count {
+    flex-grow: 0;
+    width: 25%;
+    text-align: center;
+}
+
+.body-item-volume-left {
+    flex-grow: 1;
+    text-align: end;
+    padding-left: 4%;
+}
+
+.body-item-volume-right {
+    flex-grow: 1;
+    text-align: start;
+    padding-right: 4%;
+}
+
+.body-item-price {
+    flex-grow: 0;
+    width: 25%;
+    text-align: center;
 }
