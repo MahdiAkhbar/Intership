@@ -17,6 +17,7 @@
     <div class="body body-right flex flex-column h-100">
       @for (item of sellData; track item) {
       <div class="body-item flex h-100">
+        <div class="background-bar background-bar-right"></div>
         <p class="body-item-text body-item-count">{{ item.count }}</p>
         <p class="body-item-text body-item-volume-right">{{ item.volume }}</p>
         <p class="body-item-text body-item-price">{{ item.price }}</p>
@@ -26,6 +27,7 @@
     <div class="body body-left flex flex-column h-100">
       @for (item of sellData; track item) {
       <div class="body-item flex h-100">
+        <div class="background-bar background-bar-left"></div>
         <p class="body-item-text body-item-price">{{ item.price }}</p>
         <p class="body-item-text body-item-volume-left">{{ item.volume }}</p>
         <p class="body-item-text body-item-count">{{ item.count }}</p>
