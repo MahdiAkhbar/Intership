@@ -61,6 +61,7 @@
 
 .body {
     flex-basis: 50%;
+    gap: 2px;
 }
 
 .body-right {
@@ -70,6 +71,7 @@
 .body-item {
     justify-content: space-between;
     font-size: 1.2rem;
+    position: relative;
 }
 
 .body-item-text {
@@ -99,4 +101,25 @@
     flex-grow: 0;
     width: 25%;
     text-align: center;
+}
+
+.background-bar {
+    width: 40%;
+    height: 100%;
+    position: absolute;
+    /* top: 0;
+    left: 0; */
+    z-index: -1;
+}
+
+.background-bar-right {
+    background-color: #C3FAE8;
+    left: 0;
+
+}
+
+.background-bar-left {
+    /* direction: rtl; */
+    background-color: #FFE3E3;
+
 }
