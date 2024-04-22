@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IMazanneh } from '../../../../shared/interfaces/mazanneh';
 
 @Component({
@@ -6,7 +6,7 @@ import { IMazanneh } from '../../../../shared/interfaces/mazanneh';
   templateUrl: './mazanneh.component.html',
   styleUrl: './mazanneh.component.css'
 })
-export class MazannehComponent {
+export class MazannehComponent implements OnInit {
 
   sellData: IMazanneh[] = [
     {
@@ -39,4 +39,20 @@ export class MazannehComponent {
   columns: string[] = ['count', 'volume', 'price'];
   sellHeaderColor: string = '#63E6BE';
   buyHeaderColor: string = '#FFA8A8';
+
+  volumes: number[] = [];
+  maxVolume!: number
+
+  ngOnInit(): void {
+    this.sellData.forEach(element => {
+      this.volumes.push(element.volume);
+    });
+
+    this.maxVolume = Math.max(...this.volumes);
+  }
+
+  getItemBackgroundWidth(val: number) {
+    return 100 * val / this.maxVolume;
+  }
+
 }
