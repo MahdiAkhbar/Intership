@@ -1,0 +1,60 @@
+.info-container {
+    /* gap: 4px; */
+    height: 100%;
+}
+
+.search-box {
+    gap: 4px;
+    /* height: 100%; */
+    /* flex-grow: 0; */
+}
+
+.search-input-box {
+    flex-basis: 100%;
+    padding: .2rem 1.2rem;
+}
+
+.search-input {
+    outline: none;
+    border: none;
+    width: 100%;
+}
+
+.search-input::placeholder {
+    color: #444;
+    font-weight: 600;
+}
+
+.last-exchange {
+    /* height: 100%; */
+    box-shadow: 0 1px 2px 2px rgba(0, 0, 0, .089);
+}
+
+.price {
+    font-weight: 500;
+}
+
+.date-box {
+    gap: 2rem;
+}
+
+.date-box p {
+    font-size: 1.2rem;
+}
+
+.info-box {
+    height: 100%;
+    column-gap: 4px;
+}
+
+.bg-gray {
+    background-color: #F1F3F5;
+}
+
+.info-items {
+    border: none;
+    border-radius: 4px;
+    padding: 0 1.2rem;
+    font-size: 1.2rem;
+    align-items: center;
+}
