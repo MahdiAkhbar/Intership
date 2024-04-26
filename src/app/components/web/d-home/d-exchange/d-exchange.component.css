@@ -22,31 +22,35 @@
 }
 
 .btn-buy-fill {
-    border: 1px solid #087f5b;
     background-color: #12B886;
+    border: 1px solid #12B886;
     color: #fff;
 }
 
 .btn-buy-out {
-    border: 1px solid #087f5b;
     background-color: #fff;
+    border: 1px solid #087f5b;
     color: #087F5B;
 }
 
-.btn-buy-out .btn-buy:focus {
+.btn-buy-out:hover {
     background-color: #20c997;
 }
 
 .btn-sell-fill {
-    border: 1px solid #C92A2A;
-    background-color: #C92A2A;
+    background-color: #fa5252;
+    border: 1px solid #fa5252;
     color: #fff;
 }
 
 .btn-sell-out {
-    border: 1px solid #C92A2A;
     background-color: #fff;
+    border: 1px solid #C92A2A;
     color: #C92A2A;
+}
+
+.btn-sell-out:hover {
+    background-color: #ff6b6b;
 }
 
 .form-inputs {
@@ -61,7 +65,7 @@
 }
 
 .inc-dec {
-    width: 12%;
+    width: 10%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -73,8 +77,8 @@
 .dec {
     width: 100%;
     height: 50%;
-    padding: 0 8px;
-    border: 1px solid #444;
+    color: #444;
+    border: 1px solid #ADB5BD;
     text-align: center;
     align-content: center;
 }
@@ -99,9 +103,8 @@
     align-items: center;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
+    padding: 0 .8rem;
 }
-
-.total-price-box {}
 
 .input-total-price {
     border-top-right-radius: 6px;
@@ -130,9 +133,14 @@ label {
     align-items: center;
 }
 
-.btn-cancle {
-    border: 1px solid #ADB5BD;
-    color: #777;
-    font-weight: normal;
-    font-size: 1.6rem;
+.btn-submit {
+    border: none;
+}
+
+.btn-buy-fill.btn-submit:hover {
+    background-color: #0ca678;
+}
+
+.btn-sell-fill.btn-submit:hover {
+    background-color: #f03e3e;
 }
