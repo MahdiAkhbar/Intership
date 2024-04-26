@@ -79,7 +79,7 @@ table {
 }
 
 .table-data-row {
-    height: 5rem;
+    height: 3rem;
 }
 
 .table-body .table-data-row:nth-child(even) {
