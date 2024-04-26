@@ -7,7 +7,6 @@ import { IPortfoy } from '../../../../shared/interfaces/portfoy';
   styleUrl: './portfoy.component.css'
 })
 export class PortfoyComponent {
-  [x: string]: any;
 
   portfoy: IPortfoy[] = [
     {
