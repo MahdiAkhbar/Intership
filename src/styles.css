@@ -72,6 +72,18 @@ html {
     font-size: 62.5%;
 }
 
+@media screen and (max-height: 552px) {
+    html {
+        font-size: 50%;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    html {
+        font-size: 50%;
+    }
+}
+
 body {
     font-family: "Vazirmatn", "Playfair Display", sans-serif;
     font-size: 1.6rem;
