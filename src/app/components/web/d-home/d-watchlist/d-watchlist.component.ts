@@ -84,6 +84,66 @@ export class DWatchlistComponent {
     },
     {
       category: 'خودرو',
+      name: 'شپنا',
+      lastPrice: 1000,
+      change: {
+        value: 4.5,
+        viewValue: 4.5
+      },
+      volume: 150
+    },
+    {
+      category: 'خودرو',
+      name: 'شپنا',
+      lastPrice: 1000,
+      change: {
+        value: 4.5,
+        viewValue: 4.5
+      },
+      volume: 150
+    },
+    {
+      category: 'خودرو',
+      name: 'شپنا',
+      lastPrice: 1000,
+      change: {
+        value: 4.5,
+        viewValue: 4.5
+      },
+      volume: 150
+    },
+    {
+      category: 'خودرو',
+      name: 'شپنا',
+      lastPrice: 1000,
+      change: {
+        value: 4.5,
+        viewValue: 4.5
+      },
+      volume: 150
+    },
+    {
+      category: 'خودرو',
+      name: 'شپنا',
+      lastPrice: 1000,
+      change: {
+        value: 4.5,
+        viewValue: 4.5
+      },
+      volume: 150
+    },
+    {
+      category: 'خودرو',
+      name: 'شپنا',
+      lastPrice: 1000,
+      change: {
+        value: 4.5,
+        viewValue: 4.5
+      },
+      volume: 150
+    },
+    {
+      category: 'خودرو',
       name: 'ملت',
       lastPrice: 2000,
       change: {
