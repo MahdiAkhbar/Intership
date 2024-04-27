@@ -37,4 +37,5 @@
 .portfoy {
     grid-column: 1 / -1;
     background-color: #fff;
+    min-height: 0;
 }
