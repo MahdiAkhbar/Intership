@@ -41,6 +41,7 @@ import { DExchangeComponent } from './components/web/d-home/d-exchange/d-exchang
 import { DChartComponent } from './components/web/d-home/d-chart/d-chart.component';
 import { DPortfoyComponent } from './components/web/d-home/d-portfoy/d-portfoy.component';
 import { DInfoComponent } from './components/web/d-home/d-info/d-info.component';
+import { DropdownDirective } from './shared/directives/dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { DInfoComponent } from './components/web/d-home/d-info/d-info.component'
     DWatchlistComponent,
     DExchangeComponent,
     DChartComponent,
-    DPortfoyComponent
+    DPortfoyComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,

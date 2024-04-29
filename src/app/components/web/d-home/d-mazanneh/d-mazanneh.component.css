@@ -11,4 +11,5 @@
 .body-item-text {
     height: 100%;
     align-content: center;
+    padding: 0;
 }

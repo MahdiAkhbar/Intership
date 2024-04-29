@@ -1,1 +1,69 @@
-<p>d-chrt works!</p>
+<div class="chart-container flex flex-column">
+  <div class="chart-header flex">
+    <div class="header-item category-container">
+      <div class="category">
+        <div class="dropdown" appDropdown>
+          <button #dropdownBtn type="button" class="dropdown-btn">
+            <span>{{ chartType.viewValue }}</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="#868E96"
+              class="icons bi bi-caret-down-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
+              />
+            </svg>
+          </button>
+          <ul #menu class="dropdown-menu mt-1">
+            <li *ngFor="let item of chartTypeList">
+              <button
+                class="dropdown-item"
+                type="button"
+                (click)="changeChartType(item)"
+              >
+                <span>{{ item.viewValue }}</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="header-item category-container">
+      <div class="category">
+        <div class="dropdown" appDropdown>
+          <button #dropdownBtn type="button" class="dropdown-btn">
+            <span>{{ chartDuration.viewValue }}</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="#868E96"
+              class="icons bi bi-caret-down-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
+              />
+            </svg>
+          </button>
+          <ul #menu class="dropdown-menu mt-1" style="right: 0">
+            <li *ngFor="let item of chartDurationList">
+              <button
+                class="dropdown-item"
+                type="button"
+                (click)="changeChartDuration(item)"
+              >
+                <span>{{ item.viewValue }}</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="chartdiv" class="chartdiv"></div>
+</div>
