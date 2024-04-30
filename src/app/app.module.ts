@@ -91,7 +91,8 @@ import { DropdownDirective } from './shared/directives/dropdown.directive';
     MatInputModule
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    { provide: 'API_URL', useValue: 'http://192.168.132.110:8080/api/v1' }
   ],
   bootstrap: [AppComponent]
 })
