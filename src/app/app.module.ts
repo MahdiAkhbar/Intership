@@ -42,6 +42,8 @@ import { DChartComponent } from './components/web/d-home/d-chart/d-chart.compone
 import { DPortfoyComponent } from './components/web/d-home/d-portfoy/d-portfoy.component';
 import { DInfoComponent } from './components/web/d-home/d-info/d-info.component';
 import { DropdownDirective } from './shared/directives/dropdown.directive';
+import { HttpClientModule } from '@angular/common/http';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.conponen';
 
 @NgModule({
   declarations: [
@@ -76,7 +78,8 @@ import { DropdownDirective } from './shared/directives/dropdown.directive';
     DExchangeComponent,
     DChartComponent,
     DPortfoyComponent,
-    DropdownDirective
+    DropdownDirective,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +91,8 @@ import { DropdownDirective } from './shared/directives/dropdown.directive';
     MatFormFieldModule,
     MatSelectModule,
     MatTabsModule,
-    MatInputModule
+    MatInputModule,
+    HttpClientModule
   ],
   providers: [
     provideAnimationsAsync(),
