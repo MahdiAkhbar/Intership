@@ -14,6 +14,7 @@ export class DLoginComponent implements OnInit {
 
   loginForm!: FormGroup;
   isLoading: boolean = false;
+  errorMessage!: string;
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -24,6 +25,7 @@ export class DLoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.errorMessage = '';
     let formControls = this.loginForm.controls;
     if (!formControls['username'].touched)
       this.loginForm.controls['username'].markAsTouched();
@@ -35,11 +37,17 @@ export class DLoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.isLoading = true;
       console.log('form is valid');
-      this.authService.login({ ...this.loginForm.value }).subscribe((resData) => {
-        console.log(resData);
-        this.loginForm.reset();
-        this.isLoading = false;
-      });
+      this.authService.login({ ...this.loginForm.value }).subscribe({
+        next: (resData) => {
+          this.isLoading = false;
+          this.loginForm.reset();
+          this.router.navigate(['/d'])
+        },
+        error: (err) => {
+          this.errorMessage = err;
+          this.isLoading = false;
+        }
+      })
     }
   }
 

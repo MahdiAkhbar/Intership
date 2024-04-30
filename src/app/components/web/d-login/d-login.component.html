@@ -178,6 +178,9 @@
       </svg>
       <p class="title-text">ورود به حساب کاربری</p>
     </div>
+    <div class="alert alert-danger" *ngIf="errorMessage">
+      <p>{{ errorMessage }}</p>
+    </div>
     <div class="login-form">
       <div *ngIf="isLoading" class="spinner-container">
         <app-loading-spinner></app-loading-spinner>
