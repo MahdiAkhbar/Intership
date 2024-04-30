@@ -179,6 +179,9 @@
       <p class="title-text">ورود به حساب کاربری</p>
     </div>
     <div class="login-form">
+      <div *ngIf="isLoading" class="spinner-container">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
       <form
         class="flex flex-column form"
         [formGroup]="loginForm"
@@ -225,7 +228,7 @@
             این بخش باید پر شود
           </p>
         </div>
-        <div class="form-inputs">
+        <!-- <div class="form-inputs">
           <label for="captcha" class="input-label">کد امنیتی</label>
           <div class="captcha-box flex flex-gap-8">
             <div class="captcha-input-box input flex flex-gap-4">
@@ -272,7 +275,7 @@
           >
             این بخش باید پر شود
           </p>
-        </div>
+        </div> -->
         <button type="submit" class="submit-btn">ورود</button>
       </form>
     </div>

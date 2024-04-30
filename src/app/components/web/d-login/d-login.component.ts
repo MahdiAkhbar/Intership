@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { passwordStrengthValidator } from '../../../shared/validators/passwordStrength.validator';
-import { minlengthValidator } from '../../../shared/validators/minlength.validator';
+
+import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-d-login',
@@ -10,31 +10,36 @@ import { minlengthValidator } from '../../../shared/validators/minlength.validat
   styleUrl: './d-login.component.css'
 })
 export class DLoginComponent implements OnInit {
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   loginForm!: FormGroup;
+  isLoading: boolean = false;
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       'username': new FormControl(null, Validators.required),
       'password': new FormControl(null, Validators.required),
-      'captcha': new FormControl(null, Validators.required)
+      // 'captcha': new FormControl(null, Validators.required)
     });
   }
 
   onSubmit() {
-    console.log(this.loginForm.controls['password'].errors);
     let formControls = this.loginForm.controls;
     if (!formControls['username'].touched)
       this.loginForm.controls['username'].markAsTouched();
     if (!formControls['password'].touched)
       this.loginForm.controls['password'].markAsTouched();
-    if (!formControls['captcha'].touched)
-      this.loginForm.controls['captcha'].markAsTouched();
+    // if (!formControls['captcha'].touched)
+    //   this.loginForm.controls['captcha'].markAsTouched();
 
     if (this.loginForm.valid) {
-      this.loginForm.reset();
-      this.router.navigate(['']);
+      this.isLoading = true;
+      console.log('form is valid');
+      this.authService.login({ ...this.loginForm.value }).subscribe((resData) => {
+        console.log(resData);
+        this.loginForm.reset();
+        this.isLoading = false;
+      });
     }
   }
 
