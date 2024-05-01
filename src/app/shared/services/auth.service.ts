@@ -2,12 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { ILogin } from '../interfaces/loginform.interface';
 import { ISignup } from '../interfaces/signupform.interface';
-import { catchError, tap, throwError } from 'rxjs';
-
-interface ILoginResponse {
-  refreshToken: string;
-  token: string;
-};
+import { catchError, take, tap, throwError } from 'rxjs';
+import { ILoginResponse } from '../interfaces/login-response.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -36,9 +32,21 @@ export class AuthService {
   }
 
   login(loginData: ILogin) {
-    return this.http.post<ILoginResponse>(this.apiUrl + '/login', loginData).pipe(
+    return this.http.post<ILoginResponse>(
+      this.apiUrl + '/login',
+      loginData,
+      { observe: 'response' }
+    ).pipe(
+      take(1),
+      tap(resData => {
+        this.setToken(<string>resData.body?.token)
+      }),
       catchError(errorRes => this.handleError(errorRes))
     )
+  }
+
+  logout() {
+    localStorage.removeItem('token');
   }
 
   private handleError(err: any) {
@@ -47,5 +55,14 @@ export class AuthService {
       return throwError(() => errorMessage);
     }
     return throwError(() => err.error.msg);
+  }
+
+  getToken() {
+    let token = JSON.parse(<string>localStorage.getItem('token'));
+    return token ? token : '';
+  }
+
+  setToken(value: string) {
+    localStorage.setItem('token', JSON.stringify(value));
   }
 }
