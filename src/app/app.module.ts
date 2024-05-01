@@ -96,7 +96,8 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
   ],
   providers: [
     provideAnimationsAsync(),
-    { provide: 'API_URL', useValue: 'http://192.168.132.110:8080/api/v1' }
+    { provide: 'API_URL', useValue: 'http://192.168.132.110:8080/api/v1' },
+    { provide: 'GLOBAL_TOKEN', useValue: 'TOKEN' }
   ],
   bootstrap: [AppComponent]
 })

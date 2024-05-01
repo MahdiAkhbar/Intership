@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { ILogin } from '../interfaces/loginform.interface';
 import { ISignup } from '../interfaces/signupform.interface';
@@ -16,11 +16,21 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    @Inject('API_URL') private apiUrl: string
+    @Inject('API_URL') private apiUrl: string,
+    @Inject('GLOBAL_TOKEN') private gToken: string
   ) { }
 
   signup(signupData: ISignup) {
-    return this.http.post(this.apiUrl + 'user/register', signupData).pipe(
+    let headers = new HttpHeaders({
+      'Authorization': this.gToken
+    });
+    let options = { headers: headers };
+
+    return this.http.post<{ msg: string }>(
+      this.apiUrl + '/user/register',
+      signupData,
+      options
+    ).pipe(
       catchError(errorRes => this.handleError(errorRes))
     )
   }
@@ -31,7 +41,7 @@ export class AuthService {
     )
   }
 
-  handleError(err: any) {
+  private handleError(err: any) {
     let errorMessage = 'مشکلی پیش آمد لطفا دوباره تلاش کنید';
     if (!err.error) {
       return throwError(() => errorMessage);
