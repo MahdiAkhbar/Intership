@@ -34,13 +34,19 @@ export class DSignupComponent implements OnInit {
     this.isLoading = true;
 
     this.authService.signup({ ...this.signupForm.value }).subscribe({
-      next: (resData) => {
-        this.successSignupMsg = 'ثبت نام موفقیت آمیز';
-        this.isLoading = false;
-        setTimeout(() => {
-          this.signupForm.reset();
-          this.router.navigate(['/d']);
-        }, 1000);
+      next: () => {
+        this.authService.login({
+          username: this.signupForm.value.username,
+          password: this.signupForm.value.password
+        }).subscribe(() => {
+          this.isLoading = false;
+          this.successSignupMsg = 'ثبت نام موفقیت آمیز';
+          setTimeout(() => {
+            this.signupForm.reset();
+            this.router.navigate(['/d']);
+          }, 1000);
+        });
+
       },
       error: (err) => {
         this.errorMessage = err;
