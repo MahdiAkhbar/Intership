@@ -15,6 +15,7 @@ export class DLoginComponent implements OnInit {
   loginForm!: FormGroup;
   isLoading: boolean = false;
   errorMessage!: string;
+  successLoginMsg: string = '';
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -39,9 +40,12 @@ export class DLoginComponent implements OnInit {
       console.log('form is valid');
       this.authService.login({ ...this.loginForm.value }).subscribe({
         next: (resData) => {
+          this.successLoginMsg = 'ورود موفقیت آمیز';
           this.isLoading = false;
-          this.loginForm.reset();
-          this.router.navigate(['/d'])
+          setTimeout(() => {
+            this.loginForm.reset();
+            this.router.navigate(['/d']);
+          }, 1000);
         },
         error: (err) => {
           this.errorMessage = err;

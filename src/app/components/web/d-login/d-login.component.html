@@ -178,7 +178,7 @@
       </svg>
       <p class="title-text">ورود به حساب کاربری</p>
     </div>
-    <div class="alert alert-danger" *ngIf="errorMessage">
+    <div class="error-msg alert alert-danger" *ngIf="errorMessage">
       <p>{{ errorMessage }}</p>
     </div>
     <div class="login-form">
@@ -281,6 +281,9 @@
         </div> -->
         <button type="submit" class="submit-btn">ورود</button>
       </form>
+      <div class="alert alert-success" *ngIf="successLoginMsg">
+        <p>{{ successLoginMsg }}</p>
+      </div>
     </div>
     <div class="hint flex align-center flex-gap-4">
       <p>حساب کاربری ندارید؟</p>

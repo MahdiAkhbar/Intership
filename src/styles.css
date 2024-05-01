@@ -387,3 +387,7 @@ input::placeholder {
     border-bottom-color: #f00;
     margin-top: 1rem;
 }
+
+.error-msg {
+    align-self: start;
+}
