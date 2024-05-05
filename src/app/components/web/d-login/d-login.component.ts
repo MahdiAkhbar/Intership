@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../../shared/services/auth.service';
+import { UserService } from '../../../shared/services/user.service';
 
 @Component({
   selector: 'app-d-login',
@@ -10,7 +11,11 @@ import { AuthService } from '../../../shared/services/auth.service';
   styleUrl: './d-login.component.css'
 })
 export class DLoginComponent implements OnInit {
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private userService: UserService
+  ) { }
 
   loginForm!: FormGroup;
   isLoading: boolean = false;
@@ -40,6 +45,7 @@ export class DLoginComponent implements OnInit {
       console.log('form is valid');
       this.authService.login({ ...this.loginForm.value }).subscribe({
         next: (resData) => {
+          this.userService.getUserProfile(this.loginForm.value.username).subscribe()
           // localStorage.setItem('token', JSON.stringify(resData.body?.token));
           // this.authService.setToken(<string>resData.body?.token);
           this.successLoginMsg = 'ورود موفقیت آمیز';
