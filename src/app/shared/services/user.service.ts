@@ -12,15 +12,13 @@ export class UserService {
 
   constructor(
     private http: HttpClient,
-    @Inject('API_URL') private apiUrl: string,
-    private router: Router,
-    private authService: AuthService
+    @Inject('API_URL') private apiUrl: string
   ) { }
 
   getUserProfile(username: string) {
     return this.http.get<IUser>(this.apiUrl + '/user/' + username, { observe: 'response' }).pipe(
       tap(res => {
-        this.setUser(<IUser>res.body)
+        this.setUser(<IUser>res.body);
       })
     );
   }
