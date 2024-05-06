@@ -30,7 +30,7 @@ export class UserService {
   }
 
   getUser() {
-    return JSON.parse(<string>localStorage.getItem('user'));
+    return <IUser>JSON.parse(<string>localStorage.getItem('user'));
   }
 
 }
