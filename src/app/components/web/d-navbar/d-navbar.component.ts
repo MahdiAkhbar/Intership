@@ -12,7 +12,6 @@ export class DNavbarComponent {
 
   logout() {
     this.AuthService.logout();
-    this.router.navigate(['d', 'login']);
   }
 
 }
