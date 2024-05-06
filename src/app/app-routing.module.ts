@@ -10,6 +10,7 @@ import { DTradeComponent } from './components/web/d-trade/d-trade.component';
 import { DHomeComponent } from './components/web/d-home/d-home.component';
 import { DLoginComponent } from './components/web/d-login/d-login.component';
 import { DSignupComponent } from './components/web/d-signup/d-signup.component';
+import { authGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: AppComponent, pathMatch: 'full' },
@@ -24,7 +25,7 @@ const routes: Routes = [
   { path: 'm/login', component: LoginComponent },
 
   {
-    path: 'd', component: DHomeComponent, children: [
+    path: 'd', component: DHomeComponent, canActivate: [authGuard], children: [
       { path: '', component: DTradeComponent },
       { path: 'profile', component: ProfileComponent },
     ]
