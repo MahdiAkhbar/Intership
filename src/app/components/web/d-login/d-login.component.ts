@@ -42,7 +42,6 @@ export class DLoginComponent implements OnInit {
 
     if (this.loginForm.valid) {
       this.isLoading = true;
-      console.log('form is valid');
       this.authService.login({ ...this.loginForm.value }).subscribe({
         next: (resData) => {
           this.userService.getUserProfile(this.loginForm.value.username).subscribe()
