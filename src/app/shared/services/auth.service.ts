@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { ILogin } from '../interfaces/loginform.interface';
 import { ISignup } from '../interfaces/signupform.interface';
-import { catchError, take, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, take, tap, throwError } from 'rxjs';
 import { ILoginResponse } from '../interfaces/login-response.interface';
 
 @Injectable({
@@ -15,6 +15,8 @@ export class AuthService {
     @Inject('API_URL') private apiUrl: string,
     @Inject('GLOBAL_TOKEN') private gToken: string
   ) { }
+
+  isLoggedin: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   signup(signupData: ISignup) {
     let headers = new HttpHeaders({
@@ -39,7 +41,9 @@ export class AuthService {
     ).pipe(
       take(1),
       tap(resData => {
-        this.setToken(<string>resData.body?.token)
+        this.setToken(<string>resData.body?.token);
+        this.setRefreshToken(<string>resData.body?.refresh_token);
+        this.isLoggedin.next(true);
       }),
       catchError(errorRes => this.handleError(errorRes))
     )
@@ -47,6 +51,9 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('refresh-token');
+    localStorage.removeItem('user');
+    this.isLoggedin.next(false);
   }
 
   private handleError(err: any) {
@@ -58,11 +65,39 @@ export class AuthService {
   }
 
   getToken() {
-    let token = JSON.parse(<string>localStorage.getItem('token'));
+    let token = localStorage.getItem('token');
     return token ? token : '';
   }
 
-  setToken(value: string) {
-    localStorage.setItem('token', JSON.stringify(value));
+  getRefreshToken() {
+    return localStorage.getItem('refresh-token');
   }
+
+  setToken(value: string) {
+    localStorage.setItem('token', value);
+  }
+
+  setRefreshToken(value: string) {
+    localStorage.setItem('refresh-token', value);
+  }
+
+  refreshToken() {
+    const refreshToken = this.getRefreshToken();
+    if (!refreshToken)
+      return throwError(() => 'No refresh token is available');
+
+    const headers = new HttpHeaders({
+      'Authorization': refreshToken
+    });
+    const options = { headers: headers };
+    return this.http.get<{ token: string }>(this.apiUrl + '/user/refresh_token', options).pipe(
+      tap(resData => {
+        this.setToken(resData.token);
+      }),
+      catchError(() => {
+        return throwError(() => 'Failed to refresh token');
+      })
+    )
+  }
+
 }
