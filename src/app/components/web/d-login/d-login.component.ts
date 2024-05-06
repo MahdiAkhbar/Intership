@@ -46,8 +46,6 @@ export class DLoginComponent implements OnInit {
       this.authService.login({ ...this.loginForm.value }).subscribe({
         next: (resData) => {
           this.userService.getUserProfile(this.loginForm.value.username).subscribe()
-          // localStorage.setItem('token', JSON.stringify(resData.body?.token));
-          // this.authService.setToken(<string>resData.body?.token);
           this.successLoginMsg = 'ورود موفقیت آمیز';
           this.isLoading = false;
           setTimeout(() => {
