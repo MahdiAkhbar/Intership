@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { catchError, switchMap, throwError } from 'rxjs';
 import { ILogin } from '../interfaces/loginform.interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -12,6 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private authService: AuthService,
     private http: HttpClient,
+    private route: ActivatedRoute,
     @Inject('API_URL') private apiUrl: string
   ) { }
 
@@ -29,7 +31,12 @@ export class AuthInterceptor implements HttpInterceptor {
     const newReq = this.addTokenHeader(req, token);
     return next.handle(newReq).pipe(
       catchError((err: HttpErrorResponse) => {
-        if (err.status === 401 && this.authService.getRefreshToken())
+        let error401 = err.status === 401;
+        let refToken = this.authService.getRefreshToken();
+        // let urlBlackList = ['login', 'signup'];
+        // let isWhitList = !urlBlackList.find(item => req.url.match(item));
+        let isWhitList = this.route.snapshot.routeConfig?.path?.includes('login');
+        if (error401 && refToken && isWhitList)
           return this.handle401Error(req, next);
         return throwError(() => err);
       })
