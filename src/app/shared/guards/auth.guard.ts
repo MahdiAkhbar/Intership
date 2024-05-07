@@ -16,7 +16,7 @@ class AuthGuard {
         this.loggedIn = true;
       else {
         this.router.navigate(['/d', 'login']);
-        this.loggedIn = true;
+        this.loggedIn = false;
       }
     })
     return this.loggedIn;
