@@ -1,9 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { BehaviorSubject, catchError, take, tap, throwError } from 'rxjs';
+
 import { ILogin } from '../interfaces/loginform.interface';
 import { ISignup } from '../interfaces/signupform.interface';
-import { BehaviorSubject, catchError, take, tap, throwError } from 'rxjs';
 import { ILoginResponse } from '../interfaces/login-response.interface';
+import { IUser } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -66,11 +68,16 @@ export class AuthService {
 
   getToken() {
     let token = localStorage.getItem('token');
-    return token ? token : '';
+    if (!token)
+      this.logout();
+    return token;
   }
 
   getRefreshToken() {
-    return localStorage.getItem('refresh-token');
+    let refToken = localStorage.getItem('refresh-token');
+    if (!refToken)
+      this.logout();
+    return refToken;
   }
 
   setToken(value: string) {
@@ -98,6 +105,13 @@ export class AuthService {
         return throwError(() => 'Failed to refresh token');
       })
     )
+  }
+
+  getUser() {
+    let user = <IUser>JSON.parse(<string>localStorage.getItem('user'));
+    if (!user)
+      this.logout();
+    return user;
   }
 
 }
