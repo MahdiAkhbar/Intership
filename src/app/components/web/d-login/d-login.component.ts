@@ -23,6 +23,7 @@ export class DLoginComponent implements OnInit {
   successLoginMsg: string = '';
 
   ngOnInit(): void {
+    this.autoLogin();
     this.loginForm = new FormGroup({
       'username': new FormControl(null, Validators.required),
       'password': new FormControl(null, Validators.required),
@@ -62,6 +63,25 @@ export class DLoginComponent implements OnInit {
 
   goToSignup() {
     this.router.navigate(['d', 'signup']);
+  }
+
+  autoLogin() {
+    console.log('in autoLogin function');
+    let user = this.authService.getUser();
+    let token = this.authService.getToken();
+    if (user && token)
+      this.userService.getUserProfile(user.username).subscribe(resData => {
+        //check if the user object in localstorage is equal to the user object comes from api
+        if (resData.status === 200) {
+          if (JSON.stringify({ username: user.username, pass: user.password }) === JSON.stringify({ username: resData.body?.username, pass: resData.body?.password })) {
+            this.authService.isLoggedin.next(true);
+            this.router.navigate(['/d']);
+          }
+        }
+        else {
+          return;
+        }
+      })
   }
 
 }
