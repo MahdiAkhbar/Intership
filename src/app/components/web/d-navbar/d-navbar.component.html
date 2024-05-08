@@ -2,7 +2,7 @@
   <nav class="flex justify-between align-center">
     <div>
       <button mat-button><p class="logo">IS</p></button>
-      <button mat-button [routerLink]="['home']">
+      <button mat-button [routerLink]="['/d']">
         <div class="flex align-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +45,7 @@
           </div>
         </div>
       </button>
-      <button mat-button [routerLink]="['login']">
+      <button mat-button (click)="logout()">
         <div class="flex aling-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"

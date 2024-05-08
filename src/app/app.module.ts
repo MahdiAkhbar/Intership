@@ -42,6 +42,9 @@ import { DChartComponent } from './components/web/d-home/d-chart/d-chart.compone
 import { DPortfoyComponent } from './components/web/d-home/d-portfoy/d-portfoy.component';
 import { DInfoComponent } from './components/web/d-home/d-info/d-info.component';
 import { DropdownDirective } from './shared/directives/dropdown.directive';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.conponen';
+import { AuthInterceptor } from './shared/services/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -76,7 +79,8 @@ import { DropdownDirective } from './shared/directives/dropdown.directive';
     DExchangeComponent,
     DChartComponent,
     DPortfoyComponent,
-    DropdownDirective
+    DropdownDirective,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -88,10 +92,14 @@ import { DropdownDirective } from './shared/directives/dropdown.directive';
     MatFormFieldModule,
     MatSelectModule,
     MatTabsModule,
-    MatInputModule
+    MatInputModule,
+    HttpClientModule
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    { provide: 'API_URL', useValue: 'http://192.168.132.110:8080/api/v1' },
+    { provide: 'GLOBAL_TOKEN', useValue: 'TOKEN' },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

@@ -178,14 +178,22 @@
       </svg>
       <p class="title-text">ایجاد به حساب کاربری</p>
     </div>
+    <div class="error-msg alert alert-danger" *ngIf="errorMessage">
+      <p>{{ errorMessage }}</p>
+    </div>
     <div class="login-form">
+      <div *ngIf="isLoading" class="spinner-container">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
       <form
         class="flex flex-column form"
         [formGroup]="signupForm"
         (ngSubmit)="onSubmit()"
       >
         <div class="form-inputs">
-          <label for="username" class="input-label">نام کاربری</label>
+          <label for="username" class="input-label"
+            >نام کاربری ( کد ملی )</label
+          >
           <input
             type="text"
             id="username"
@@ -202,7 +210,49 @@
               !signupForm.controls['username'].valid
             "
           >
-            این بخش باید پر شود
+            لطفا کد ملی خود را وارد کنید
+          </p>
+        </div>
+        <div class="form-inputs">
+          <label for="firstName" class="input-label">نام</label>
+          <input
+            type="text"
+            id="firstName"
+            class="input"
+            name="firstName"
+            placeholder="لطفا نام خود را وارد کنید"
+            formControlName="firstName"
+            #firstName
+          />
+          <p
+            class="invalid-value"
+            *ngIf="
+              signupForm.controls['firstName'].touched &&
+              !signupForm.controls['firstName'].valid
+            "
+          >
+            لطفا نام خود را وارد کنید
+          </p>
+        </div>
+        <div class="form-inputs">
+          <label for="lastName" class="input-label">نام خانوادگی</label>
+          <input
+            type="text"
+            id="lastName"
+            class="input"
+            name="lastName"
+            placeholder="لطفا نام خانوادگی خود را وارد کنید"
+            formControlName="lastName"
+            #lastName
+          />
+          <p
+            class="invalid-value"
+            *ngIf="
+              signupForm.controls['lastName'].touched &&
+              !signupForm.controls['lastName'].valid
+            "
+          >
+            لطفا نام خانوادگی خود را وارد کنید
           </p>
         </div>
         <div class="form-inputs">
@@ -298,6 +348,9 @@
 
         <button type="submit" class="submit-btn">ورود</button>
       </form>
+      <div class="alert alert-success" *ngIf="successSignupMsg">
+        <p>{{ successSignupMsg }}</p>
+      </div>
     </div>
     <div class="hint flex align-center flex-gap-4">
       <p>حساب کاربری ندارید؟</p>
