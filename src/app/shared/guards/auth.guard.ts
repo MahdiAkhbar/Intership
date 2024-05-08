@@ -15,7 +15,8 @@ class AuthGuard {
       if (state)
         this.loggedIn = true;
       else {
-        this.router.navigate(['/d', 'login']);
+        if (!route.routeConfig?.path?.includes('signup'))
+          this.router.navigate(['/d', 'login']);
         this.loggedIn = false;
       }
     })
