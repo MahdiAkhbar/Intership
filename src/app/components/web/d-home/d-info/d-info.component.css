@@ -12,6 +12,7 @@
 .search-input-box {
     flex-basis: 100%;
     padding: .2rem 1.2rem;
+    position: relative;
 }
 
 .search-input {
@@ -20,9 +21,44 @@
     width: 100%;
 }
 
+.search-result {
+    background-color: #fff;
+    font-size: 1.4rem;
+    position: absolute;
+    top: 110%;
+    right: 0;
+    width: 100%;
+    max-height: 150px;
+    overflow: auto;
+}
+
+.search-result-item {
+    padding: .8rem .4rem;
+}
+
+.search-result-item:hover {
+    background-color: #F1F3F5;
+    cursor: pointer;
+}
+
+.symbol {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #444;
+}
+
+.company-name {
+    font-size: 1.2rem;
+    color: #666;
+}
+
 .search-input::placeholder {
     color: #444;
     font-weight: 600;
+}
+
+.stock-company-name {
+    font-size: 1.4rem;
 }
 
 .last-exchange {
@@ -30,12 +66,17 @@
     box-shadow: 0 1px 2px 2px rgba(0, 0, 0, .089);
 }
 
-.price {
+.last-trade-title {
+    font-size: 1.4rem;
+}
+
+.last-price {
+    font-size: 1.4rem;
     font-weight: 500;
 }
 
 .date-box {
-    gap: 2rem;
+    /* gap: 2rem; */
 }
 
 .date-box p {
