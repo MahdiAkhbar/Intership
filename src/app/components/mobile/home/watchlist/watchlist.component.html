@@ -93,20 +93,21 @@
       <tbody class="table-body">
         <tr
           class="table-data-row"
-          *ngFor="
-            let item of watchList | categpry : category | search : searchInput
-          "
+          *ngFor="let item of watchList | search : searchInput"
         >
           <td class="text-center flex align-center flex-gap-8">
             <div class="green-box"></div>
             <div class="text-end">
-              <p>{{ item.name }}</p>
+              <p>{{ item.symbol }}</p>
             </div>
           </td>
           <td class="text-start ps-4">
-            <p>{{ item.lastPrice }}</p>
+            <p>{{ item.finalTradePrice }}</p>
           </td>
           <td class="text-end">
+            <p class="change-finishPrice change-bg-green">4.5</p>
+          </td>
+          <!-- <td class="text-end">
             <p
               class="change-finishPrice"
               [ngClass]="{
@@ -116,8 +117,8 @@
             >
               {{ item.change.viewValue }}
             </p>
-          </td>
-          <td class="text-start ps-4">{{ item.volume }}</td>
+          </td> -->
+          <td class="text-start ps-4">{{ item.tradesVolume }}</td>
         </tr>
       </tbody>
     </table>
