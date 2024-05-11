@@ -28,38 +28,15 @@ export class DInfoComponent implements OnInit {
 
   ngOnInit(): void {
     let ins = this.stockService.getInsCode();
-    if (ins) {
-      this.stockService.getLastTrade(ins).subscribe(res => {
-        this.stockLastTrade = res;
-      })
-    }
-    else {
-      let user = this.userService.getUser();
-      if (user) {
-        let ins = user.favorites[0].insCode;
-        this.stockService.getStockInfo(ins).subscribe(res => {
-          this.selectedStock = res;
-          this.r2.setProperty(this.search.nativeElement, 'value', res.symbol);
-        });
-        this.stockService.getLastTrade(ins).subscribe(res => {
-          this.stockLastTrade = res;
-        });
-      }
-      else {
-        this.stockService.getStockInfo('48990026850202503').subscribe(res => {
-          this.selectedStock = res;
-          this.r2.setProperty(this.search.nativeElement, 'value', res.symbol);
-        }
-        );
-        this.stockService.getLastTrade(ins).subscribe(res => {
-          this.stockLastTrade = res;
-        });
-      }
-    }
+    this.stockService.getLastTrade(ins).subscribe(res => {
+      this.stockLastTrade = res;
+    });
+
     this.stockService.getStockInfo(ins).subscribe(res => {
       this.selectedStock = res;
       this.r2.setProperty(this.search.nativeElement, 'value', res.symbol);
     });
+
     fromEvent(this.search.nativeElement, 'input').pipe(
       map(event => event as InputEvent),
       map(input => (<HTMLInputElement>input.target).value),
@@ -75,6 +52,7 @@ export class DInfoComponent implements OnInit {
       this.searchResultList = res;
       this.searchResultListVisiblity = true;
     })
+
   }
 
   onSelectSearchItem(val: ISearch) {
