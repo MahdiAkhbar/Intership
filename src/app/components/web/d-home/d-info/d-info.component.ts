@@ -4,7 +4,7 @@ import { StockService } from '../../../../shared/services/stock.service';
 import { ISearch } from '../../../../shared/interfaces/search.interface';
 import { IStock } from '../../../../shared/interfaces/stock-info.interface';
 import { ILastTrade } from '../../../../shared/interfaces/stock-last-trade.interface';
-import { UserService } from '../../../../shared/services/user.service';
+import { WatchListService } from '../../../../shared/services/watch-list.service';
 
 @Component({
   selector: 'app-d-info',
@@ -15,7 +15,7 @@ export class DInfoComponent implements OnInit {
   constructor(
     private stockService: StockService,
     private r2: Renderer2,
-    private userService: UserService
+    private watchListService: WatchListService
   ) { }
 
   searchResultList!: ISearch[];
@@ -67,6 +67,11 @@ export class DInfoComponent implements OnInit {
       this.stockLastTrade = res;
       this.lastTradeDate = new Date(res.eventDate);
     })
+  }
+
+  onAddToWatchList() {
+    this.watchListService.addToWatchList(this.selectedStock).subscribe()
+    this.watchListService.watchList.next(this.selectedStock);
   }
 
 }
