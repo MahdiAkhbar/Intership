@@ -4,6 +4,7 @@ import { StockService } from '../../../../shared/services/stock.service';
 import { ISearch } from '../../../../shared/interfaces/search.interface';
 import { IStock } from '../../../../shared/interfaces/stock-info.interface';
 import { ILastTrade } from '../../../../shared/interfaces/stock-last-trade.interface';
+import { UserService } from '../../../../shared/services/user.service';
 
 @Component({
   selector: 'app-d-info',
@@ -13,7 +14,8 @@ import { ILastTrade } from '../../../../shared/interfaces/stock-last-trade.inter
 export class DInfoComponent implements OnInit {
   constructor(
     private stockService: StockService,
-    private r2: Renderer2
+    private r2: Renderer2,
+    private userService: UserService
   ) { }
 
   searchResultList!: ISearch[];
@@ -25,11 +27,36 @@ export class DInfoComponent implements OnInit {
   @ViewChild('search', { static: true }) search!: ElementRef;
 
   ngOnInit(): void {
-    let lastIns = this.stockService.getInsCode();
-    this.stockService.getLastTrade(lastIns).subscribe(res => {
-      this.stockLastTrade = res;
-    })
-    this.stockService.getStockInfo(lastIns).subscribe(res => {
+    let ins = this.stockService.getInsCode();
+    if (ins) {
+      this.stockService.getLastTrade(ins).subscribe(res => {
+        this.stockLastTrade = res;
+      })
+    }
+    else {
+      let user = this.userService.getUser();
+      if (user) {
+        let ins = user.favorites[0].insCode;
+        this.stockService.getStockInfo(ins).subscribe(res => {
+          this.selectedStock = res;
+          this.r2.setProperty(this.search.nativeElement, 'value', res.symbol);
+        });
+        this.stockService.getLastTrade(ins).subscribe(res => {
+          this.stockLastTrade = res;
+        });
+      }
+      else {
+        this.stockService.getStockInfo('48990026850202503').subscribe(res => {
+          this.selectedStock = res;
+          this.r2.setProperty(this.search.nativeElement, 'value', res.symbol);
+        }
+        );
+        this.stockService.getLastTrade(ins).subscribe(res => {
+          this.stockLastTrade = res;
+        });
+      }
+    }
+    this.stockService.getStockInfo(ins).subscribe(res => {
       this.selectedStock = res;
       this.r2.setProperty(this.search.nativeElement, 'value', res.symbol);
     });
