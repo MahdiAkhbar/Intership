@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { ISearch } from '../interfaces/search.interface';
 import { IStock } from '../interfaces/stock-info.interface';
-import { take, tap } from 'rxjs';
+import { BehaviorSubject, take, tap } from 'rxjs';
 import { ILastTrade } from '../interfaces/stock-last-trade.interface';
 import { IMazanneh } from '../interfaces/mazanneh';
 import { UserService } from './user.service';
@@ -17,6 +17,11 @@ export class StockService {
     private userService: UserService,
     @Inject('API_URL') private apiUrl: string
   ) { }
+
+  lastInsCode: string = this.getInsCode();
+  insCode: BehaviorSubject<string> = new BehaviorSubject(this.lastInsCode);
+  mazannehMaxSupplyVolume!: number;
+  mazannehMaxDemandVolume!: number;
 
   search(arg: string) {
     return this.http.get<ISearch[]>(this.apiUrl + '/tse/search/' + arg);
@@ -41,9 +46,7 @@ export class StockService {
   }
 
   getStockInfo(ins: string) {
-    return this.http.get<IStock>(this.apiUrl + '/tse/stock_info/' + ins).pipe(
-      take(1)
-    );
+    return this.http.get<IStock>(this.apiUrl + '/tse/stock_info/' + ins);
   }
 
   getLastTrade(ins: string) {
@@ -53,7 +56,27 @@ export class StockService {
   }
 
   getStockMazanneh(ins: string) {
-    return this.http.get<IMazanneh>(this.apiUrl + '/tse/stock_limits/' + ins);
+    return this.http.get<IMazanneh[]>(this.apiUrl + '/tse/stock_limits/' + ins).pipe(
+      tap(res => {
+        this.mazannehMaxSupplyVolume = res[0].supplyVolume;
+        this.mazannehMaxDemandVolume = res[0].demandVolume;
+
+        res.forEach(item => {
+          if (item.supplyVolume > this.mazannehMaxSupplyVolume)
+            this.mazannehMaxSupplyVolume = item.supplyVolume;
+          if (item.demandVolume > this.mazannehMaxDemandVolume)
+            this.mazannehMaxDemandVolume = item.demandVolume;
+        })
+      })
+    );
+  }
+
+  getMazannehMaxSupplyVolume() {
+    return this.mazannehMaxSupplyVolume;
+  }
+
+  getMazannehMaxDemandVolume() {
+    return this.mazannehMaxDemandVolume;
   }
 
 }
