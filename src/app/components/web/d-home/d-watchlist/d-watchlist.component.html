@@ -121,6 +121,7 @@
           id="search-input"
           class="search-input"
           placeholder="جستجو"
+          [(ngModel)]="searchInput"
         />
       </div>
     </div>
@@ -157,22 +158,23 @@
       <tbody class="table-body">
         <tr
           class="table-data-row"
-          *ngFor="
-            let item of watchList | categpry : category | search : searchInput
-          "
+          *ngFor="let item of watchList | search : searchInput"
         >
           <td class="tabel-data">
             <div class="watchlist-item-name flex flex-gap-8 h-100 align-center">
               <div class="green-box"></div>
               <div class="text-end">
-                <p>{{ item.name }}</p>
+                <p>{{ item.symbol }}</p>
               </div>
             </div>
           </td>
           <td class="table-data">
-            <p>{{ item.lastPrice }}</p>
+            <p>{{ item.finalTradePrice }}</p>
           </td>
           <td class="table-data">
+            <p class="change-finishPrice change-bg-green">4.5</p>
+          </td>
+          <!-- <td class="table-data">
             <p
               class="change-finishPrice"
               [ngClass]="{
@@ -182,8 +184,8 @@
             >
               {{ item.change.viewValue }}
             </p>
-          </td>
-          <td class="table-data">{{ item.volume }}</td>
+          </td> -->
+          <td class="table-data">{{ item.tradesVolume }}</td>
         </tr>
       </tbody>
     </table>
