@@ -56,6 +56,7 @@ export class DInfoComponent implements OnInit {
   }
 
   onSelectSearchItem(val: ISearch) {
+    this.stockService.insCode.next(val.insCode);
     this.stockService.setInsCode(val.insCode);
     this.searchResultListVisiblity = false;
     this.stockService.getStockInfo(val.insCode).subscribe(res => {
