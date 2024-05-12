@@ -15,7 +15,8 @@ export class WatchListService {
 
   username!: string;
 
-  watchList: Subject<IWatchlist> = new Subject();
+  addWatchList: Subject<IWatchlist> = new Subject();
+  removeWatchListSubject: Subject<IWatchlist> = new Subject();
 
   getWatchList(username: string) {
     this.username = username;
@@ -28,5 +29,18 @@ export class WatchListService {
       insCode: item.insCode
     };
     return this.http.post(this.apiUrl + '/favorite/add_to_user', data);
+  }
+
+  removeWatchlistItem(ins: string) {
+    // console.log('string');
+    // console.log(ins);
+    // console.log('number');
+    // console.log(+ins);
+    // console.log('******************');
+    let data = {
+      username: this.username,
+      insCode: ins
+    };
+    return this.http.delete(this.apiUrl + '/favorite/delete_from_user', { body: data });
   }
 }
