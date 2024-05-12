@@ -73,15 +73,6 @@ table {
     text-align: center;
 }
 
-.table-data {
-    align-content: center;
-    text-align: center;
-}
-
-.table-data-row {
-    height: 3rem;
-}
-
 .table-body .table-data-row:nth-child(even) {
     background-color: #F1F3F5;
 }
@@ -92,32 +83,6 @@ table {
 
 .light-text {
     color: #777;
-}
-
-.green-box {
-    width: 1rem;
-    height: 1rem;
-    background-color: #38D9A9;
-    margin-right: 1rem;
-}
-
-.change-finishPrice {
-    display: inline-block;
-    width: 3.2rem;
-    text-align: center;
-    border-radius: 1rem;
-    align-content: center;
-    background-color: transparent;
-}
-
-.change-bg-green {
-    background-color: #20C997;
-    color: #fff;
-}
-
-.change-bg-red {
-    background-color: #FF6B6B;
-    color: #fff;
 }
 
 /* //////////////// */
@@ -164,4 +129,8 @@ button span {
     display: flex;
     align-items: center;
     height: 100%;
+}
+
+app-watchlist-item {
+    display: contents;
 }
