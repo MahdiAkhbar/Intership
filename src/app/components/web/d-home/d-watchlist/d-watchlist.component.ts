@@ -3,6 +3,7 @@ import { IWatchlist } from '../../../../shared/interfaces/watchList';
 import { WatchListService } from '../../../../shared/services/watch-list.service';
 import { UserService } from '../../../../shared/services/user.service';
 import { take } from 'rxjs';
+import { StockService } from '../../../../shared/services/stock.service';
 
 @Component({
   selector: 'app-d-watchlist',
@@ -13,7 +14,8 @@ export class DWatchlistComponent implements OnInit {
 
   constructor(
     private watchListService: WatchListService,
-    private userService: UserService
+    private userService: UserService,
+    private stockService: StockService
   ) { }
 
   category: string = 'خودرو';
@@ -279,6 +281,10 @@ export class DWatchlistComponent implements OnInit {
       if (flag)
         this.watchList.push(item);
     })
+  }
+
+  onWatchListItemClicked(ins: string) {
+    this.stockService.insCode.next(ins);
   }
 
   changeCategory(arg: string) {
