@@ -273,7 +273,8 @@ export class DWatchlistComponent implements OnInit {
     ).subscribe(res => {
       this.watchList = res;
     });
-    this.watchListService.watchList.subscribe(item => {
+
+    this.watchListService.addWatchList.subscribe(item => {
       let flag = true;
       for (let i = 0; i < this.watchList.length; i++)
         if (this.watchList[i].insCode === item.insCode)
@@ -281,10 +282,20 @@ export class DWatchlistComponent implements OnInit {
       if (flag)
         this.watchList.push(item);
     })
+
+    this.watchListService.removeWatchListSubject.subscribe(item => {
+      this.watchList.forEach((el) => {
+        if (el.insCode === item.insCode) {
+          let index = this.watchList.indexOf(item);
+          this.watchList.splice(index, 1);
+        }
+      })
+    })
   }
 
   onWatchListItemClicked(ins: string) {
     this.stockService.insCode.next(ins);
+    this.stockService.setInsCode(ins);
   }
 
   changeCategory(arg: string) {
