@@ -72,7 +72,7 @@ export class DInfoComponent implements OnInit {
 
   onAddToWatchList() {
     this.watchListService.addToWatchList(this.selectedStock).subscribe()
-    this.watchListService.watchList.next(this.selectedStock);
+    this.watchListService.addWatchList.next(this.selectedStock);
   }
 
 }
