@@ -43,10 +43,38 @@
     color: #fff;
 }
 
-.table-data-volume {
-    text-align: end;
+.remove-watchlist {
+    background-color: #e0e5e8;
+    display: none;
+}
+
+.remove-watchlist-button {
+    background-color: #FF6B6B;
+    width: 25px;
+    height: 100%;
+    text-align: center;
+    align-content: center;
 }
 
 .remove-watchlist-icon {
-    display: none;
+    width: 15px;
+    height: 15px;
+
+}
+
+.volume-text {
+    text-align: end;
+}
+
+.table-data-row:hover {
+    .volume-text {
+        display: none;
+    }
+
+    .remove-watchlist {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        padding-left: 8px;
+    }
 }
