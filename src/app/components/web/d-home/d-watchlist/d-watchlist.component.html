@@ -156,37 +156,13 @@
         </tr>
       </thead>
       <tbody class="table-body">
-        <tr
+        <app-watchlist-item
           class="table-data-row"
-          *ngFor="let item of watchList | search : searchInput"
-        >
-          <td class="tabel-data">
-            <div class="watchlist-item-name flex flex-gap-8 h-100 align-center">
-              <div class="green-box"></div>
-              <div class="text-end">
-                <p>{{ item.symbol }}</p>
-              </div>
-            </div>
-          </td>
-          <td class="table-data">
-            <p>{{ item.finalTradePrice }}</p>
-          </td>
-          <td class="table-data">
-            <p class="change-finishPrice change-bg-green">4.5</p>
-          </td>
-          <!-- <td class="table-data">
-            <p
-              class="change-finishPrice"
-              [ngClass]="{
-                'change-bg-green': item.change.value > 0,
-                'change-bg-red': item.change.value < 0
-              }"
-            >
-              {{ item.change.viewValue }}
-            </p>
-          </td> -->
-          <td class="table-data">{{ item.tradesVolume }}</td>
-        </tr>
+          *ngFor="let item of watchList | search : searchInput; let i = index"
+          [watchList]="item"
+          [index]="i"
+          (click)="onWatchListItemClicked(item.insCode)"
+        ></app-watchlist-item>
       </tbody>
     </table>
   </div>
