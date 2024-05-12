@@ -27,15 +27,16 @@ export class DInfoComponent implements OnInit {
   @ViewChild('search', { static: true }) search!: ElementRef;
 
   ngOnInit(): void {
-    let ins = this.stockService.getInsCode();
-    this.stockService.getLastTrade(ins).subscribe(res => {
-      this.stockLastTrade = res;
-    });
+    this.stockService.insCode.subscribe(ins => {
+      this.stockService.getLastTrade(ins).subscribe(res => {
+        this.stockLastTrade = res;
+      });
 
-    this.stockService.getStockInfo(ins).subscribe(res => {
-      this.selectedStock = res;
-      this.r2.setProperty(this.search.nativeElement, 'value', res.symbol);
-    });
+      this.stockService.getStockInfo(ins).subscribe(res => {
+        this.selectedStock = res;
+        this.r2.setProperty(this.search.nativeElement, 'value', res.symbol);
+      });
+    })
 
     fromEvent(this.search.nativeElement, 'input').pipe(
       map(event => event as InputEvent),
