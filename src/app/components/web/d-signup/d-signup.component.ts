@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { passwordStrengthValidator } from '../../../shared/validators/passwordStrength.validator';
 import { AuthService } from '../../../shared/services/auth.service';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-d-signup',
@@ -33,25 +34,24 @@ export class DSignupComponent implements OnInit {
     this.errorMessage = '';
     this.isLoading = true;
 
-    this.authService.signup({ ...this.signupForm.value }).subscribe({
-      next: () => {
-        this.authService.login({
-          username: this.signupForm.value.username,
-          password: this.signupForm.value.password
-        }).subscribe(() => {
-          this.isLoading = false;
-          this.successSignupMsg = 'ثبت نام موفقیت آمیز';
-          setTimeout(() => {
-            this.signupForm.reset();
-            this.router.navigate(['/d']);
-          }, 1000);
-        });
-
-      },
-      error: (err) => {
+    this.authService.signup({ ...this.signupForm.value }).pipe(
+      catchError((err) => {
         this.errorMessage = err;
         this.isLoading = false;
-      }
+        return throwError(() => err);
+      })
+    ).subscribe(() => {
+      this.authService.login({
+        username: this.signupForm.value.username,
+        password: this.signupForm.value.password
+      }).subscribe(() => {
+        this.isLoading = false;
+        this.successSignupMsg = 'ثبت نام موفقیت آمیز';
+        setTimeout(() => {
+          this.signupForm.reset();
+          this.router.navigate(['/d']);
+        }, 1000);
+      });
     })
   }
 

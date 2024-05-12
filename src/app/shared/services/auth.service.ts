@@ -6,6 +6,7 @@ import { ILogin } from '../interfaces/loginform.interface';
 import { ISignup } from '../interfaces/signupform.interface';
 import { ILoginResponse } from '../interfaces/login-response.interface';
 import { IUser } from '../interfaces/user.interface';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,17 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
+    private router: Router,
     @Inject('API_URL') private apiUrl: string,
     @Inject('GLOBAL_TOKEN') private gToken: string
   ) { }
 
   isLoggedin: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  isLoggedinState: boolean = false;
+
+  getLoggedInState() {
+    return this.isLoggedinState;
+  }
 
   signup(signupData: ISignup) {
     let headers = new HttpHeaders({
@@ -56,6 +63,7 @@ export class AuthService {
     localStorage.removeItem('refresh-token');
     localStorage.removeItem('user');
     this.isLoggedin.next(false);
+    this.router.navigate(['/d', 'login']);
   }
 
   private handleError(err: any) {

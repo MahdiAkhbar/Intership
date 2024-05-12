@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserAgentService } from './shared/services/user-agent.service';
 import { Router } from '@angular/router';
+import { AuthService } from './shared/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +11,17 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   constructor(
     private userAgentService: UserAgentService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
   title = 'trader';
 
   userDeviceType!: string;
 
   ngOnInit(): void {
+    this.authService.isLoggedin.subscribe(value => {
+      this.authService.isLoggedinState = value;
+    })
     this.userDeviceType = this.userAgentService.getDeviceType();
     if (this.userDeviceType === 'Desktop')
       this.router.navigate(['/d']);

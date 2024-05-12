@@ -11,16 +11,21 @@ class AuthGuard {
   loggedIn: boolean = false;
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Promise<boolean> {
-    this.authService.isLoggedin.subscribe((state) => {
-      if (state)
-        this.loggedIn = true;
-      else {
-        if (!route.routeConfig?.path?.includes('signup'))
-          this.router.navigate(['/d', 'login']);
-        this.loggedIn = false;
-      }
-    })
-    return this.loggedIn;
+    // this.authService.isLoggedin.subscribe((state) => {
+    //   if (state)
+    //     this.loggedIn = true;
+    //   else {
+    //     this.loggedIn = false;
+    //       this.router.navigate(['/d', 'login']);
+    //   }
+    // })
+    let status = this.authService.getLoggedInState();
+    if (status)
+      return true;
+    else {
+      this.router.navigate(['/d', 'login']);
+      return false;
+    }
   }
 
 }
