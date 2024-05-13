@@ -37,10 +37,11 @@ export class StockService {
       return ins;
     else {
       let user = this.userService.getUser();
-      if (user) {
-        let ins = user.favorites[0].insCode;
-        return ins;
-      }
+      if (user)
+        if (user.favorites.length > 0) {
+          ins = user.favorites[0].insCode;
+          return ins;
+        }
     }
     return '48990026850202503';
   }
