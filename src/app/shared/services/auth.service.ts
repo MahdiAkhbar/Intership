@@ -62,6 +62,7 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('refresh-token');
     localStorage.removeItem('user');
+    localStorage.removeItem('ins-code');
     this.isLoggedin.next(false);
     this.router.navigate(['/d', 'login']);
   }
@@ -76,8 +77,9 @@ export class AuthService {
 
   getToken() {
     let token = localStorage.getItem('token');
-    if (!token)
-      this.logout();
+    if (!token) {
+      this.isLoggedin.next(false);
+    }
     return token;
   }
 
@@ -110,6 +112,7 @@ export class AuthService {
         this.setToken(resData.token);
       }),
       catchError(() => {
+        this.logout();
         return throwError(() => 'Failed to refresh token');
       })
     )
