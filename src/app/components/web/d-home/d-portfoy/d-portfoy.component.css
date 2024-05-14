@@ -30,7 +30,7 @@ table {
 }
 
 tbody tr {
-    height: 3rem;
+    height: 4rem;
 }
 
 .table-body .table-data-row:nth-child(even) {
