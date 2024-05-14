@@ -41,17 +41,12 @@ export class DSignupComponent implements OnInit {
         return throwError(() => err);
       })
     ).subscribe(() => {
-      this.authService.login({
-        username: this.signupForm.value.username,
-        password: this.signupForm.value.password
-      }).subscribe(() => {
-        this.isLoading = false;
-        this.successSignupMsg = 'ثبت نام موفقیت آمیز';
-        setTimeout(() => {
-          this.signupForm.reset();
-          this.router.navigate(['/d']);
-        }, 1000);
-      });
+      this.signupForm.reset();
+      this.isLoading = false;
+      this.successSignupMsg = 'ثبت نام موفقیت آمیز \n لطفا وارد شوید';
+      setTimeout(() => {
+        this.router.navigate(['/d', 'login']);
+      }, 1500);
     })
   }
 
