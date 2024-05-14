@@ -16,7 +16,25 @@
           d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
         />
       </svg>
-      <input type="text" class="search-input" placeholder="جستجوی نماد" />
+      <input
+        type="text"
+        class="search-input"
+        placeholder="جستجوی نماد"
+        #search
+      />
+      <div
+        class="container-c search-result"
+        *ngIf="searchResultList && searchResultListVisiblity"
+      >
+        <div
+          class="search-result-item flex justify-between"
+          *ngFor="let item of searchResultList"
+          (click)="onSelectSearchItem(item)"
+        >
+          <p class="symbol">{{ item.symbol }}</p>
+          <p class="company-name">{{ item.companyName }}</p>
+        </div>
+      </div>
     </div>
     <div class="btn icon-watch flex justify-center align-center">
       <svg
@@ -42,58 +60,55 @@
   </div>
   <!-- Last Exchange -->
   <div class="flex align-center justify-between shadow-1 p-8 mb-12">
-    <div>
-      <p class="text">آخرین معامله</p>
+    <div class="w-50">
+      <p class="text">{{ selectedStock.companyName }}</p>
     </div>
-    <div>
-      <p class="price">24287</p>
-    </div>
-    <div class="flex flex-column text-center date-box">
-      <p class="date">1403/01/15</p>
-      <p class="time">12:08:22</p>
+    <div class="w-50 flex justify-between">
+      <p>آخرین معامله</p>
+      <p class="price">{{ selectedStock.finalTradePrice }}</p>
     </div>
   </div>
   <!-- Info Box -->
   <div class="grid grid-2 info-box">
     <div class="flex justify-between info-items bg-gray">
       <p>حجم معاملات</p>
-      <p>222</p>
+      <p>{{ selectedStock.tradesVolume }}</p>
     </div>
     <div class="flex justify-between info-items bg-gray">
       <p>قیمت پایانی</p>
-      <p>222</p>
+      <p>{{ selectedStock.closePrice }}</p>
     </div>
     <div class="flex justify-between info-items">
       <p>تعداد معاملات</p>
-      <p>222</p>
+      <p>{{ selectedStock.tradesCount }}</p>
     </div>
     <div class="flex justify-between info-items">
       <p>قیمت دیروز</p>
-      <p>222</p>
+      <p>{{ selectedStock.firstPrice }}</p>
     </div>
     <div class="flex justify-between info-items bg-gray">
       <p>ارزش معاملات</p>
-      <p>222</p>
+      <p>{{ selectedStock.tradesValue }}</p>
     </div>
     <div class="flex justify-between info-items bg-gray">
       <p>بازه فردا</p>
-      <p>222</p>
+      <p>{{ selectedStock.minAllowedPrice - selectedStock.maxAllowedPrice }}</p>
     </div>
     <div class="flex justify-between info-items">
       <p>حجم مبنا</p>
-      <p>222</p>
+      <p>{{ selectedStock.baseVolume }}</p>
     </div>
     <div class="flex justify-between info-items">
       <p>بازه هفته</p>
-      <p>222</p>
+      <p>ناموجود</p>
     </div>
     <div class="flex justify-between info-items bg-gray">
       <p>نوع بازار</p>
-      <p>222</p>
+      <p>{{ selectedStock }}</p>
     </div>
     <div class="flex justify-between info-items bg-gray">
       <p>بازه تعداد</p>
-      <p>222</p>
+      <p>ناموجود</p>
     </div>
   </div>
 </div>
