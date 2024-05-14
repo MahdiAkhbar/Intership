@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { concatMap, filter, fromEvent, map, tap } from 'rxjs';
+import { concatMap, filter, fromEvent, interval, map, mergeMap, startWith, switchMap, tap } from 'rxjs';
 import { StockService } from '../../../../shared/services/stock.service';
 import { ISearch } from '../../../../shared/interfaces/search.interface';
 import { IStock } from '../../../../shared/interfaces/stock-info.interface';
@@ -22,21 +22,19 @@ export class DInfoComponent implements OnInit {
   searchResultListVisiblity: boolean = false;
   selectedStock!: IStock;
 
-  stockLastTrade!: ILastTrade;
-  lastTradeDate!: Date;
   @ViewChild('search', { static: true }) search!: ElementRef;
 
   ngOnInit(): void {
-    this.stockService.insCode.subscribe(ins => {
-      this.stockService.getLastTrade(ins).subscribe(res => {
-        this.stockLastTrade = res;
-      });
+    this.stockService.insCode.pipe(
+      switchMap((ins) => interval(5 * 60 * 1000).pipe(
+        startWith(0),
+        mergeMap(() => this.stockService.getStockInfo(ins))
+      ))
+    ).subscribe(res => {
+      this.selectedStock = res;
+      this.r2.setProperty(this.search.nativeElement, 'value', res.symbol);
+    });
 
-      this.stockService.getStockInfo(ins).subscribe(res => {
-        this.selectedStock = res;
-        this.r2.setProperty(this.search.nativeElement, 'value', res.symbol);
-      });
-    })
 
     fromEvent(this.search.nativeElement, 'input').pipe(
       map(event => event as InputEvent),
@@ -64,10 +62,6 @@ export class DInfoComponent implements OnInit {
       this.selectedStock = res;
       this.r2.setProperty(this.search.nativeElement, 'value', val.symbol);
     });
-    this.stockService.getLastTrade(val.insCode).subscribe(res => {
-      this.stockLastTrade = res;
-      this.lastTradeDate = new Date(res.eventDate);
-    })
   }
 
   onAddToWatchList() {
