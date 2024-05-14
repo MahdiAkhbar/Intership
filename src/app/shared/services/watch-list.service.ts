@@ -32,11 +32,6 @@ export class WatchListService {
   }
 
   removeWatchlistItem(ins: string) {
-    // console.log('string');
-    // console.log(ins);
-    // console.log('number');
-    // console.log(+ins);
-    // console.log('******************');
     let data = {
       username: this.username,
       insCode: ins
