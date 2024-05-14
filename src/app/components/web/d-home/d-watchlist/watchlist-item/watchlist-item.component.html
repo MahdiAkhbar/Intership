@@ -11,7 +11,15 @@
     <p>{{ item.closePrice }}</p>
   </td>
   <td class="table-data">
-    <p class="change-finishPrice change-bg-green">4.5</p>
+    <p
+      class="change-finishPrice"
+      [ngClass]="{
+        'change-bg-green': changePercentage.value > 0,
+        'change-bg-red': changePercentage.value < 0
+      }"
+    >
+      {{ changePercentage.viewValue }}
+    </p>
   </td>
 
   <td class="table-data table-data-volume">
