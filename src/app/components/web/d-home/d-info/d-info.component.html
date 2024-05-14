@@ -62,19 +62,19 @@
     </button>
   </div>
   <!-- Last Exchange -->
-  <div class="flex align-center justify-between p-2 mb-2 last-exchange">
+  <div class="flex align-center p-2 mb-2 last-exchange">
+    <!-- company name -->
     <div class="stock-company-name">
       {{ selectedStock.companyName }}
     </div>
-    <div class="flex align-center">
-      <p class="text last-trade-title">آخرین معامله</p>
-    </div>
-    <div class="flex align-center">
-      <p class="last-price">{{ stockLastTrade.finalTradePrice }}</p>
-    </div>
-    <div class="flex flex-column text-center date-box align-center">
-      <p class="date">2024/04/29</p>
-      <p class="time">12:00:00</p>
+    <!-- laset trade info -->
+    <div class="last-trade-info">
+      <div class="flex align-center">
+        <p class="text last-trade-title">آخرین معامله</p>
+      </div>
+      <div class="flex align-center">
+        <p class="last-price">{{ selectedStock.finalTradePrice }}</p>
+      </div>
     </div>
   </div>
   <!-- Info Box -->
