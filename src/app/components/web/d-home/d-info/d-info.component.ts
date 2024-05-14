@@ -20,7 +20,26 @@ export class DInfoComponent implements OnInit {
 
   searchResultList!: ISearch[];
   searchResultListVisiblity: boolean = false;
-  selectedStock!: IStock;
+  selectedStock: IStock = {
+    insCode: '',
+    symbol: '',
+    companyName: '',
+    symbolEn: '',
+    companyNameEn: '',
+    maxAllowedPrice: 0,
+    minAllowedPrice: 0,
+    baseVolume: 0,
+    flow: 0,
+    valid: 0,
+    symbolType: 0,
+    symbolAsset: 0,
+    finalTradePrice: 0,
+    firstPrice: 0,
+    closePrice: 0,
+    tradesCount: 0,
+    tradesVolume: 0,
+    tradesValue: 0
+  };
 
   @ViewChild('search', { static: true }) search!: ElementRef;
 
