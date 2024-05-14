@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IWatchlist } from '../../../../shared/interfaces/watchList';
 import { WatchListService } from '../../../../shared/services/watch-list.service';
 import { UserService } from '../../../../shared/services/user.service';
-import { take } from 'rxjs';
+import { interval, mergeMap, startWith, switchMap, take } from 'rxjs';
 import { StockService } from '../../../../shared/services/stock.service';
 
 @Component({
@@ -268,11 +268,13 @@ export class DWatchlistComponent implements OnInit {
 
   ngOnInit(): void {
     let user = this.userService.getUser();
-    this.watchListService.getWatchList(user.username).pipe(
-      take(1)
-    ).subscribe(res => {
-      this.watchList = res;
-    });
+    interval(5 * 60 * 1000).pipe(
+      startWith(0),
+      switchMap(() => this.watchListService.getWatchList(user.username))
+    )
+      .subscribe(res => {
+        this.watchList = res;
+      });
 
     this.watchListService.addWatchList.subscribe(item => {
       let flag = true;
