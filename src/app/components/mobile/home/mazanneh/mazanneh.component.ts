@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IMazanneh } from '../../../../shared/interfaces/mazanneh';
 import { StockService } from '../../../../shared/services/stock.service';
-import { take } from 'rxjs';
+import { interval, mergeMap, startWith, switchMap, take } from 'rxjs';
 
 @Component({
   selector: 'app-mazanneh',
@@ -18,16 +18,18 @@ export class MazannehComponent implements OnInit {
   maxDemandVolume!: number
 
   ngOnInit(): void {
-    this.stockService.insCode.subscribe(ins => {
-
-      this.stockService.getStockMazanneh(ins).pipe(
-        take(1)
-      ).subscribe(res => {
-        this.mazanneh = res;
-        this.maxSupplyVolume = this.stockService.getMazannehMaxSupplyVolume();
-        this.maxDemandVolume = this.stockService.getMazannehMaxDemandVolume();
-      })
-    });
+    this.stockService.insCode.pipe(
+      switchMap((ins) => interval(5 * 60 * 1000).pipe(
+        startWith(0),
+        mergeMap(() => this.stockService.getStockMazanneh(ins).pipe(
+          take(1)
+        ))
+      ))
+    ).subscribe(res => {
+      this.mazanneh = res;
+      this.maxSupplyVolume = this.stockService.getMazannehMaxSupplyVolume();
+      this.maxDemandVolume = this.stockService.getMazannehMaxDemandVolume();
+    })
   }
 
   getSupplyBackgroundWidth(val: number) {
