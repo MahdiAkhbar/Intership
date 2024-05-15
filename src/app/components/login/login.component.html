@@ -6,23 +6,13 @@
       <p class="title-text">ورود به حساب کاربری</p>
     </div>
   </div>
-  <!-- <form>
-    <div class="">
-      <label for="exampleInputEmail1" class="form-label">نام کاربری</label>
-      <input
-        type="text"
-        class="form-control"
-        id="username"
-        aria-describedby="emailHelp"
-      />
-    </div>
-    <div class="">
-      <label for="exampleInputPassword1" class="form-label">رمز ورود</label>
-      <input type="password" class="form-control" id="password" />
-    </div>
-    <button type="submit" class="btn btn-primary">ورود</button>
-  </form> -->
-  <form class="form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+  <div *ngIf="isLoading" class="spinner-container">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+  <div class="error-msg alert alert-danger" *ngIf="errorMessage">
+    <p>{{ errorMessage }}</p>
+  </div>
+  <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-inputs">
       <div class="form-input-item">
         <label class="input-label mb-2" for="username">نام کاربری</label>
@@ -103,7 +93,7 @@
           لطفا رمز خود را وارد کنید!
         </p>
       </div>
-      <div
+      <!-- <div
         class="form-input-item"
         [ngClass]="{
           'is-invalid':
@@ -144,8 +134,8 @@
             alt="captcha"
             class="captcha-image"
           />
-        </div>
-        <!-- <span>
+        </div> -->
+      <!-- <span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -159,17 +149,15 @@
             />
           </svg>
         </span> -->
-      </div>
+      <!-- </div> -->
     </div>
-    <button
-      type="submit"
-      class="submit-btn"
-      [disabled]="!loginForm.valid"
-      (click)="goToHome()"
-    >
+    <button type="submit" class="submit-btn" [disabled]="!loginForm.valid">
       ورود
     </button>
   </form>
+  <div class="alert alert-success w-100" *ngIf="successLoginMsg">
+    <p class="text-center">{{ successLoginMsg }}</p>
+  </div>
   <div class="flex align-center flex-gap-4">
     <p>حساب کاربری ندارید؟</p>
     <a (click)="goToSignup()" class="signup-text">ثبت نام کنید</a>
