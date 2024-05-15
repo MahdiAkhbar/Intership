@@ -49,7 +49,7 @@ export class SignupComponent {
       this.successSignupMsg = 'ثبت نام موفقیت آمیز \n لطفا وارد شوید';
       setTimeout(() => {
         this.router.navigate(['/m', 'login']);
-      }, 1500);
+      }, 2000);
     })
   }
 

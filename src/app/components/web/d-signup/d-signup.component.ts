@@ -46,7 +46,7 @@ export class DSignupComponent implements OnInit {
       this.successSignupMsg = 'ثبت نام موفقیت آمیز \n لطفا وارد شوید';
       setTimeout(() => {
         this.router.navigate(['/d', 'login']);
-      }, 1500);
+      }, 2000);
     })
   }
 
