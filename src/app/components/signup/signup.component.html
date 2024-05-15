@@ -6,6 +6,12 @@
       <p class="title-text">ایجاد حساب کاربری</p>
     </div>
   </div>
+  <div *ngIf="isLoading" class="spinner-container">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+  <div class="error-msg alert alert-danger" *ngIf="errorMessage">
+    <p>{{ errorMessage }}</p>
+  </div>
   <form class="form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
     <div class="form-inputs">
       <div class="form-input-item">
@@ -212,6 +218,9 @@
       ورود
     </button>
   </form>
+  <div class="alert alert-success w-100" *ngIf="successSignupMsg">
+    <p class="text-center">{{ successSignupMsg }}</p>
+  </div>
   <div class="flex align-center flex-gap-4">
     <p>قبلا ثبت نام کرده اید؟</p>
     <a class="signup-text" (click)="goToLogin()">وارد شوید</a>
