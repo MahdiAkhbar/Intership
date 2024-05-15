@@ -7,6 +7,7 @@ import { ISignup } from '../interfaces/signupform.interface';
 import { ILoginResponse } from '../interfaces/login-response.interface';
 import { IUser } from '../interfaces/user.interface';
 import { Router } from '@angular/router';
+import { UserAgentService } from './user-agent.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
+    private userAgentService: UserAgentService,
     @Inject('API_URL') private apiUrl: string,
     @Inject('GLOBAL_TOKEN') private gToken: string
   ) { }
@@ -64,7 +66,13 @@ export class AuthService {
     localStorage.removeItem('user');
     localStorage.removeItem('ins-code');
     this.isLoggedin.next(false);
-    this.router.navigate(['/d', 'login']);
+    let userAgent = this.userAgentService.getDeviceType();
+    if (userAgent === 'Desktop') {
+      this.router.navigate(['/d/login']);
+    }
+    else
+      this.router.navigate(['/m/login']);
+
   }
 
   private handleError(err: any) {
