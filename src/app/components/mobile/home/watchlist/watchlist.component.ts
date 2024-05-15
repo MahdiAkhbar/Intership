@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IWatchlist } from '../../../../shared/interfaces/watchList';
 import { WatchListService } from '../../../../shared/services/watch-list.service';
 import { UserService } from '../../../../shared/services/user.service';
+import { StockService } from '../../../../shared/services/stock.service';
+import { interval, startWith, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-watchlist',
@@ -12,7 +14,8 @@ export class WatchlistComponent {
 
   constructor(
     private watchListService: WatchListService,
-    private userService: UserService
+    private userService: UserService,
+    private stockService: StockService
   ) { }
 
   category: string = 'خودرو';
@@ -265,9 +268,36 @@ export class WatchlistComponent {
 
   ngOnInit(): void {
     let user = this.userService.getUser();
-    this.watchListService.getWatchList(user.username).subscribe(res => {
-      this.watchList = res;
-    });
+    interval(5 * 60 * 1000).pipe(
+      startWith(0),
+      switchMap(() => this.watchListService.getWatchList(user.username))
+    )
+      .subscribe(res => {
+        this.watchList = res;
+      });
+
+    this.watchListService.addWatchList.subscribe(item => {
+      let flag = true;
+      for (let i = 0; i < this.watchList.length; i++)
+        if (this.watchList[i].insCode === item.insCode)
+          flag = false;
+      if (flag)
+        this.watchList.push(item);
+    })
+
+    this.watchListService.removeWatchListSubject.subscribe(item => {
+      this.watchList.forEach((el) => {
+        if (el.insCode === item.insCode) {
+          let index = this.watchList.indexOf(item);
+          this.watchList.splice(index, 1);
+        }
+      })
+    })
+  }
+
+  onWatchListItemClicked(ins: string) {
+    this.stockService.insCode.next(ins);
+    this.stockService.setInsCode(ins);
   }
 
   changeCategory(arg: string) {
