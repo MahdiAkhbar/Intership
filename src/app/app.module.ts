@@ -45,6 +45,7 @@ import { DropdownDirective } from './shared/directives/dropdown.directive';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.conponen';
 import { AuthInterceptor } from './shared/services/auth-interceptor.service';
+import { WatchlistItemComponent } from './components/web/d-home/d-watchlist/watchlist-item/watchlist-item.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { AuthInterceptor } from './shared/services/auth-interceptor.service';
     DChartComponent,
     DPortfoyComponent,
     DropdownDirective,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    WatchlistItemComponent
   ],
   imports: [
     BrowserModule,
