@@ -6,8 +6,128 @@
       <p class="title-text">ایجاد حساب کاربری</p>
     </div>
   </div>
-  <form class="form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+  <form class="form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
     <div class="form-inputs">
+      <div class="form-input-item">
+        <label class="input-label mb-2" for="username"
+          >نام کاربری (کد ملی)</label
+        >
+        <input
+          id="username"
+          type="text"
+          class="input"
+          name="username"
+          placeholder="لطفا نام کاربری خود را وارد کنید"
+          formControlName="username"
+          [ngClass]="{
+            'is-invalid':
+              !signupForm.controls['username'].valid &&
+              signupForm.controls['username'].touched
+          }"
+        />
+        <!-- <span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="#fff"
+            class="icons"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </span> -->
+        <p
+          class="is-invalid-text"
+          *ngIf="
+            !signupForm.controls['username'].valid &&
+            signupForm.controls['username'].touched
+          "
+        >
+          لطفا نام کاربری خود را وارد کنید!
+        </p>
+      </div>
+      <div class="form-input-item">
+        <label class="input-label mb-2" for="firstName">نام</label>
+        <input
+          id="firstName"
+          type="text"
+          class="input"
+          name="firstName"
+          placeholder="لطفا نام خود را وارد کنید"
+          formControlName="firstName"
+          [ngClass]="{
+            'is-invalid':
+              !signupForm.controls['firstName'].valid &&
+              signupForm.controls['firstName'].touched
+          }"
+        />
+        <!-- <span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="#fff"
+            class="icons"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </span> -->
+        <p
+          class="is-invalid-text"
+          *ngIf="
+            !signupForm.controls['firstName'].valid &&
+            signupForm.controls['firstName'].touched
+          "
+        >
+          لطفا نام خود را وارد کنید!
+        </p>
+      </div>
+      <div class="form-input-item">
+        <label class="input-label mb-2" for="lastName">نام خانوادگی</label>
+        <input
+          id="lastName"
+          type="text"
+          class="input"
+          name="lastName"
+          placeholder="لطفا نام خانوادگی خود را وارد کنید"
+          formControlName="lastName"
+          [ngClass]="{
+            'is-invalid':
+              !signupForm.controls['lastName'].valid &&
+              signupForm.controls['lastName'].touched
+          }"
+        />
+        <!-- <span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="#fff"
+            class="icons"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </span> -->
+        <p
+          class="is-invalid-text"
+          *ngIf="
+            !signupForm.controls['lastName'].valid &&
+            signupForm.controls['lastName'].touched
+          "
+        >
+          لطفا نام خانوادگی خود را وارد کنید!
+        </p>
+      </div>
+
       <div class="form-input-item">
         <label class="input-label mb-2" for="email">ایمیل</label>
         <input
@@ -19,8 +139,8 @@
           formControlName="email"
           [ngClass]="{
             'is-invalid':
-              !loginForm.controls['email'].valid &&
-              loginForm.controls['email'].touched
+              !signupForm.controls['email'].valid &&
+              signupForm.controls['email'].touched
           }"
         />
         <!-- <span>
@@ -40,8 +160,8 @@
         <p
           class="is-invalid-text"
           *ngIf="
-            !loginForm.controls['email'].valid &&
-            loginForm.controls['email'].touched
+            !signupForm.controls['email'].valid &&
+            signupForm.controls['email'].touched
           "
         >
           لطفا ایمیل خود را وارد کنید!
@@ -59,8 +179,8 @@
           formControlName="password"
           [ngClass]="{
             'is-invalid':
-              !loginForm.controls['password'].valid &&
-              loginForm.controls['password'].touched
+              !signupForm.controls['password'].valid &&
+              signupForm.controls['password'].touched
           }"
         />
         <!-- <span>
@@ -80,20 +200,15 @@
         <p
           class="is-invalid-text"
           *ngIf="
-            !loginForm.controls['password'].valid &&
-            loginForm.controls['password'].touched
+            !signupForm.controls['password'].valid &&
+            signupForm.controls['password'].touched
           "
         >
           لطفا رمز خود را وارد کنید!
         </p>
       </div>
     </div>
-    <button
-      type="submit"
-      class="login-btn"
-      [disabled]="!loginForm.valid"
-      (click)="goToHome()"
-    >
+    <button type="submit" class="login-btn" [disabled]="!signupForm.valid">
       ورود
     </button>
   </form>
