@@ -20,6 +20,7 @@ export class DInfoComponent implements OnInit {
 
   searchResultList!: ISearch[];
   searchResultListVisiblity: boolean = false;
+  isFocus: boolean = false;
   selectedStock: IStock = {
     insCode: '',
     symbol: '',
@@ -52,6 +53,7 @@ export class DInfoComponent implements OnInit {
     ).subscribe(res => {
       this.selectedStock = res;
       this.r2.setProperty(this.search.nativeElement, 'value', res.symbol);
+      this.search.nativeElement.focus();
     });
 
 
@@ -69,7 +71,17 @@ export class DInfoComponent implements OnInit {
     ).subscribe(res => {
       this.searchResultList = res;
       this.searchResultListVisiblity = true;
-    })
+      this.isFocus = true;
+    });
+
+    this.r2.listen(this.search.nativeElement, 'focus', () => {
+      this.isFocus = true;
+    });
+    this.r2.listen(this.search.nativeElement, 'focusout', () => {
+      setTimeout(() => {
+        this.isFocus = false;
+      }, 200);
+    });
 
   }
 
