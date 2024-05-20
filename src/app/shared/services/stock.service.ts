@@ -6,6 +6,7 @@ import { BehaviorSubject, take, tap } from 'rxjs';
 import { ILastTrade } from '../interfaces/stock-last-trade.interface';
 import { IMazanneh } from '../interfaces/mazanneh';
 import { UserService } from './user.service';
+import { IChart } from '../interfaces/chart.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -78,6 +79,10 @@ export class StockService {
 
   getMazannehMaxDemandVolume() {
     return this.mazannehMaxDemandVolume;
+  }
+
+  getChartInfo(ins: string) {
+    return this.http.get<IChart[]>(this.apiUrl + '/tse/stock_chart_data/' + ins);
   }
 
 }
