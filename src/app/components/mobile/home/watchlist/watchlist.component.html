@@ -3,7 +3,7 @@
   <!-- <mat-form-field class="dots">
       <mat-label>...</mat-label>
       <mat-select>
-        <mat-option [value]="'add'">
+        <mat-option>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -19,7 +19,7 @@
             />
           </svg>
         </mat-option>
-        <mat-option [value]="'edit'">
+        <mat-option>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -35,7 +35,7 @@
             />
           </svg>
         </mat-option>
-        <mat-option [value]="'edit'">
+        <mat-option>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -56,7 +56,7 @@
     <mat-form-field>
       <mat-select [(value)]="category">
         @for (item of watchListCategory; track item) {
-        <mat-option [value]="item">{{ item }}</mat-option>
+        <mat-optionm }}</mat-option>
         }
       </mat-select>
     </mat-form-field>
@@ -73,7 +73,7 @@
             <i class="bi bi-arrow-down-up"></i>
             <span>...</span>
           </button>
-          <ul #menu class="dropdown-menu mt-1" style="right: 0">
+          <ul #menu class="dropdown-menu mt-1">
             <li>
               <button class="dropdown-item" type="button">
                 <svg
@@ -146,7 +146,7 @@
             <i class="bi bi-arrow-down-up"></i>
             <span>خودرو</span>
           </button>
-          <ul #menu class="dropdown-menu mt-1" style="right: 0">
+          <ul #menu class="dropdown-menu mt-1">
             <li *ngFor="let item of watchListCategory">
               <button
                 class="dropdown-item"
