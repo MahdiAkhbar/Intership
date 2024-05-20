@@ -3,7 +3,7 @@ import { StockService } from '../../../../shared/services/stock.service';
 import { WatchListService } from '../../../../shared/services/watch-list.service';
 import { ISearch } from '../../../../shared/interfaces/search.interface';
 import { IStock } from '../../../../shared/interfaces/stock-info.interface';
-import { concatMap, filter, fromEvent, interval, map, mergeMap, startWith, switchMap, tap } from 'rxjs';
+import { concatMap, distinctUntilChanged, filter, fromEvent, interval, map, mergeMap, startWith, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-info',
@@ -45,6 +45,7 @@ export class InfoComponent {
 
   ngOnInit(): void {
     this.stockService.insCode.pipe(
+      distinctUntilChanged(),
       switchMap((ins) => interval(5 * 60 * 1000).pipe(
         startWith(0),
         mergeMap(() => this.stockService.getStockInfo(ins))

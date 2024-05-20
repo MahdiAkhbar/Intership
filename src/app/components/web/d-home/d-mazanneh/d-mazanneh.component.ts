@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IMazanneh } from '../../../../shared/interfaces/mazanneh';
 import { StockService } from '../../../../shared/services/stock.service';
-import { interval, mergeMap, startWith, switchMap, take } from 'rxjs';
+import { distinctUntilChanged, interval, mergeMap, startWith, switchMap, take } from 'rxjs';
 
 @Component({
   selector: 'app-d-mazanneh',
@@ -20,7 +20,7 @@ export class DMazannehComponent implements OnInit {
   ngOnInit(): void {
 
     this.stockService.insCode.pipe(
-
+      distinctUntilChanged(),
       switchMap((ins) => interval(5 * 60 * 1000).pipe(
         startWith(0),
         mergeMap(() => this.stockService.getStockMazanneh(ins).pipe(

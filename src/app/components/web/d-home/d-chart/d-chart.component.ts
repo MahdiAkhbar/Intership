@@ -4,7 +4,7 @@ import * as am5xy from '@amcharts/amcharts5/xy';
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import { isPlatformBrowser } from '@angular/common';
 import { StockService } from '../../../../shared/services/stock.service';
-import { interval, mergeMap, startWith, switchMap } from 'rxjs';
+import { distinctUntilChanged, interval, mergeMap, startWith, switchMap } from 'rxjs';
 
 export type ChartType = {
   value: string;
@@ -78,6 +78,7 @@ export class DChartComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.stockService.insCode.pipe(
+      distinctUntilChanged(),
       switchMap((ins) => interval(5 * 60 * 1000).pipe(
         startWith(0),
         mergeMap(() => this.stockService.getChartInfo(ins))
