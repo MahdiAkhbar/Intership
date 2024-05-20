@@ -32,7 +32,7 @@ export class WatchlistItemComponent implements OnInit {
       take(1)
     ).subscribe(res => {
       let value = (res.closePrice - res.firstPrice) * 100 / res.firstPrice;
-      let viewValue = (value >= 0 ? value : -value).toFixed(2);
+      let viewValue = Math.abs(value).toFixed(2);
       this.changePercentage = {
         value: value,
         viewValue: viewValue
