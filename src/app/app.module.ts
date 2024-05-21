@@ -8,6 +8,7 @@ import { MatTabsModule } from '@angular/material/tabs'
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input'
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -95,7 +96,8 @@ import { WatchlistItemComponent } from './components/web/d-home/d-watchlist/watc
     MatSelectModule,
     MatTabsModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTooltipModule
   ],
   providers: [
     provideAnimationsAsync(),
