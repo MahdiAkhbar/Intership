@@ -8,7 +8,7 @@
             <i class="bi bi-arrow-down-up"></i>
             <span>...</span>
           </button>
-          <ul #menu class="dropdown-menu mt-1" style="right: 0">
+          <ul #menu class="dropdown-menu mt-1">
             <li>
               <button class="dropdown-item" type="button">
                 <svg
@@ -81,7 +81,7 @@
             <i class="bi bi-arrow-down-up"></i>
             <span>خودرو</span>
           </button>
-          <ul #menu class="dropdown-menu mt-1" style="right: 0">
+          <ul #menu class="dropdown-menu mt-1">
             <li *ngFor="let item of watchListCategory">
               <button
                 class="dropdown-item"
@@ -121,6 +121,7 @@
           id="search-input"
           class="search-input"
           placeholder="جستجو"
+          [(ngModel)]="searchInput"
         />
       </div>
     </div>
@@ -155,36 +156,13 @@
         </tr>
       </thead>
       <tbody class="table-body">
-        <tr
+        <app-watchlist-item
           class="table-data-row"
-          *ngFor="
-            let item of watchList | categpry : category | search : searchInput
-          "
-        >
-          <td class="tabel-data">
-            <div class="watchlist-item-name flex flex-gap-8 h-100 align-center">
-              <div class="green-box"></div>
-              <div class="text-end">
-                <p>{{ item.name }}</p>
-              </div>
-            </div>
-          </td>
-          <td class="table-data">
-            <p>{{ item.lastPrice }}</p>
-          </td>
-          <td class="table-data">
-            <p
-              class="change-finishPrice"
-              [ngClass]="{
-                'change-bg-green': item.change.value > 0,
-                'change-bg-red': item.change.value < 0
-              }"
-            >
-              {{ item.change.viewValue }}
-            </p>
-          </td>
-          <td class="table-data">{{ item.volume }}</td>
-        </tr>
+          *ngFor="let item of watchList | search : searchInput; let i = index"
+          [watchList]="item"
+          [index]="i"
+          (click)="onWatchListItemClicked(item.insCode)"
+        ></app-watchlist-item>
       </tbody>
     </table>
   </div>

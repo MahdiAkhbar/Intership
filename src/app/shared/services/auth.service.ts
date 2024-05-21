@@ -6,6 +6,8 @@ import { ILogin } from '../interfaces/loginform.interface';
 import { ISignup } from '../interfaces/signupform.interface';
 import { ILoginResponse } from '../interfaces/login-response.interface';
 import { IUser } from '../interfaces/user.interface';
+import { Router } from '@angular/router';
+import { UserAgentService } from './user-agent.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +16,18 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
+    private router: Router,
+    private userAgentService: UserAgentService,
     @Inject('API_URL') private apiUrl: string,
     @Inject('GLOBAL_TOKEN') private gToken: string
   ) { }
 
   isLoggedin: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  isLoggedinState: boolean = false;
+
+  getLoggedInState() {
+    return this.isLoggedinState;
+  }
 
   signup(signupData: ISignup) {
     let headers = new HttpHeaders({
@@ -55,7 +64,15 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('refresh-token');
     localStorage.removeItem('user');
+    localStorage.removeItem('ins-code');
     this.isLoggedin.next(false);
+    let userAgent = this.userAgentService.getDeviceType();
+    if (userAgent === 'Desktop') {
+      this.router.navigate(['/d/login']);
+    }
+    else
+      this.router.navigate(['/m/login']);
+
   }
 
   private handleError(err: any) {
@@ -68,8 +85,9 @@ export class AuthService {
 
   getToken() {
     let token = localStorage.getItem('token');
-    if (!token)
-      this.logout();
+    if (!token) {
+      this.isLoggedin.next(false);
+    }
     return token;
   }
 
@@ -102,6 +120,7 @@ export class AuthService {
         this.setToken(resData.token);
       }),
       catchError(() => {
+        this.logout();
         return throwError(() => 'Failed to refresh token');
       })
     )

@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Chart } from 'chart.js/auto';
-import { getRelativePosition } from 'chart.js/helpers';
 
 import { IGraphType } from '../../../../shared/interfaces/graphType';
 
@@ -42,26 +40,8 @@ export class GraphComponent implements OnInit {
   public chart: any;
 
   ngOnInit(): void {
-    this.createChart();
 
   }
 
-  createChart() {
-    this.chart = new Chart('MyChart', {
-      type: this.sellectedGraphType,
-      data: {
-        labels: this.chartData.map(row => row.month),
-        datasets: [
-          {
-            label: '',
-            data: this.chartData.map(row => row.value),
-            backgroundColor: 'blue'
-          }
-        ]
-      },
-      options: {
-        aspectRatio: 2.5,
-      }
-    });
-  }
+
 }

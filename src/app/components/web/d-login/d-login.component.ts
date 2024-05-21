@@ -66,7 +66,6 @@ export class DLoginComponent implements OnInit {
   }
 
   autoLogin() {
-    console.log('in autoLogin function');
     let user = this.authService.getUser();
     let token = this.authService.getToken();
     if (user && token)

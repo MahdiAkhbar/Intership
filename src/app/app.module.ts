@@ -8,6 +8,7 @@ import { MatTabsModule } from '@angular/material/tabs'
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input'
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -45,6 +46,7 @@ import { DropdownDirective } from './shared/directives/dropdown.directive';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.conponen';
 import { AuthInterceptor } from './shared/services/auth-interceptor.service';
+import { WatchlistItemComponent } from './components/web/d-home/d-watchlist/watchlist-item/watchlist-item.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,8 @@ import { AuthInterceptor } from './shared/services/auth-interceptor.service';
     DChartComponent,
     DPortfoyComponent,
     DropdownDirective,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    WatchlistItemComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +96,8 @@ import { AuthInterceptor } from './shared/services/auth-interceptor.service';
     MatSelectModule,
     MatTabsModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTooltipModule
   ],
   providers: [
     provideAnimationsAsync(),

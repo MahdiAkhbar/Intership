@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IMazanneh } from '../../../../shared/interfaces/mazanneh';
+import { StockService } from '../../../../shared/services/stock.service';
+import { distinctUntilChanged, interval, mergeMap, startWith, switchMap, take } from 'rxjs';
 
 @Component({
   selector: 'app-mazanneh',
@@ -7,52 +9,36 @@ import { IMazanneh } from '../../../../shared/interfaces/mazanneh';
   styleUrl: './mazanneh.component.css'
 })
 export class MazannehComponent implements OnInit {
+  constructor(
+    private stockService: StockService
+  ) { }
 
-  sellData: IMazanneh[] = [
-    {
-      count: 3,
-      volume: 2000000,
-      price: 5475
-    },
-    {
-      count: 2,
-      volume: 255000,
-      price: 5789
-    },
-    {
-      count: 20,
-      volume: 1000000,
-      price: 5475
-    },
-    {
-      count: 5,
-      volume: 400000,
-      price: 2045
-    },
-    {
-      count: 3,
-      volume: 700,
-      price: 78452
-    },
-  ];
-
-  columns: string[] = ['count', 'volume', 'price'];
-  sellHeaderColor: string = '#63E6BE';
-  buyHeaderColor: string = '#FFA8A8';
-
-  volumes: number[] = [];
-  maxVolume!: number
+  mazanneh!: IMazanneh[];
+  maxSupplyVolume!: number
+  maxDemandVolume!: number
 
   ngOnInit(): void {
-    this.sellData.forEach(element => {
-      this.volumes.push(element.volume);
-    });
-
-    this.maxVolume = Math.max(...this.volumes);
+    this.stockService.insCode.pipe(
+      distinctUntilChanged(),
+      switchMap((ins) => interval(5 * 60 * 1000).pipe(
+        startWith(0),
+        mergeMap(() => this.stockService.getStockMazanneh(ins).pipe(
+          take(1)
+        ))
+      ))
+    ).subscribe(res => {
+      this.mazanneh = res;
+      this.maxSupplyVolume = this.stockService.getMazannehMaxSupplyVolume();
+      this.maxDemandVolume = this.stockService.getMazannehMaxDemandVolume();
+    })
   }
 
-  getItemBackgroundWidth(val: number) {
-    return 100 * val / this.maxVolume;
+  getSupplyBackgroundWidth(val: number) {
+    return 100 * val / this.maxSupplyVolume;
+  }
+
+  getDemandBackgroundWidth(val: number) {
+    return 100 * val / this.maxDemandVolume;
   }
 
 }

@@ -10,10 +10,10 @@ export class CategoryPipe implements PipeTransform {
     if (value.length < 1 || arg === '')
       return value;
     let list: IWatchlist[] = [];
-    for (let item of value) {
-      if (item.category === arg)
-        list.push(item);
-    }
+    // for (let item of value) {
+    //   if (item.category === arg)
+    //     list.push(item);
+    // }
     return list;
   }
 

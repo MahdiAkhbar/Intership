@@ -56,6 +56,30 @@ export class PortfoyComponent {
         viewValue: 4.5
       },
       currentValue: 5600,
+    },
+    {
+      name: 'پلاسک',
+      count: 500,
+      lastPrice: 6000,
+      profitOrLoss: 0,
+      finishPrice: 6000,
+      change: {
+        value: 5,
+        viewValue: 5
+      },
+      currentValue: 5600,
+    },
+    {
+      name: 'شپنا',
+      count: 500,
+      lastPrice: 6000,
+      profitOrLoss: 14,
+      finishPrice: 6000,
+      change: {
+        value: -4.5,
+        viewValue: 4.5
+      },
+      currentValue: 5600,
     }
   ];
 

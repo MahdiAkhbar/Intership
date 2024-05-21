@@ -13,20 +13,6 @@
     flex-grow: 1;
 }
 
-.dropdown {
-    align-content: center;
-}
-
-.dropdown-btn {
-    width: 100%;
-    color: #444;
-    background-color: transparent;
-    border: 1px solid #868E96;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
 .icons {
     width: 15px;
     height: 15px;
@@ -37,7 +23,12 @@
     text-align: right;
 }
 
-.chartdiv {
+.chart {
+    width: 100%;
+    height: 100%;
+}
+
+#chartdiv {
     width: 100%;
     height: 100%;
 }

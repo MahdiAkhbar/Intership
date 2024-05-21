@@ -11,7 +11,7 @@ export class SearchPipe implements PipeTransform {
       return value;
     let list: IWatchlist[] = [];
     for (let item of value) {
-      if (item.name.includes(arg))
+      if (item.symbol.includes(arg))
         list.push(item)
     }
     return list;

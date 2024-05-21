@@ -2,7 +2,7 @@
   <nav class="flex justify-between">
     <div>
       <button mat-button><p class="logo">IS</p></button>
-      <button mat-button [routerLink]="['']">
+      <button mat-button [routerLink]="['/m']">
         <div class="flex align-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +23,13 @@
       </button>
     </div>
     <div>
-      <button mat-button [routerLink]="['profile']">
+      <button
+        mat-button
+        [routerLink]="['profile']"
+        matTooltip="پروفایل"
+        matTooltipHideDelay="2000"
+        oncontextmenu="return false;"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -39,7 +45,13 @@
           />
         </svg>
       </button>
-      <button mat-button [routerLink]="['/m/login']">
+      <button
+        mat-button
+        (click)="onLogout()"
+        matTooltip="خروج"
+        matTooltipHideDelay="2000"
+        oncontextmenu="return false;"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"

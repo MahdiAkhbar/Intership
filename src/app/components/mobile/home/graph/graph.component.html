@@ -3,10 +3,7 @@
     <!-- Graph Type -->
     <mat-form-field>
       <mat-label>نوع نمودار</mat-label>
-      <mat-select
-        [(value)]="sellectedGraphType"
-        (selectionChange)="createChart()"
-      >
+      <mat-select [(value)]="sellectedGraphType">
         @for (item of graphType; track item) {
         <mat-option [value]="item.value">{{ item.viewValue }}</mat-option>
         }
@@ -31,7 +28,5 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div class="graph">
-    <canvas id="MyChart">{{ chart }}</canvas>
-  </div>
+  <div class="graph"></div>
 </div>

@@ -35,9 +35,10 @@ export class AuthInterceptor implements HttpInterceptor {
         let refToken = this.authService.getRefreshToken();
         // let urlBlackList = ['login', 'signup'];
         // let isWhitList = !urlBlackList.find(item => req.url.match(item));
-        let isWhitList = this.route.snapshot.routeConfig?.path?.includes('login');
-        if (error401 && refToken && isWhitList)
+        let isWhitList = !this.route.snapshot.routeConfig?.path?.includes('login');
+        if (error401 && refToken && isWhitList) {
           return this.handle401Error(req, next);
+        }
         return throwError(() => err);
       })
     )
