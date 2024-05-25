@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserAgentService } from './shared/services/user-agent.service';
-import { Router } from '@angular/router';
 import { AuthService } from './shared/services/auth.service';
 
 @Component({
@@ -11,7 +10,6 @@ import { AuthService } from './shared/services/auth.service';
 export class AppComponent implements OnInit {
   constructor(
     private userAgentService: UserAgentService,
-    private router: Router,
     private authService: AuthService
   ) { }
   title = 'trader';
@@ -23,10 +21,8 @@ export class AppComponent implements OnInit {
       this.authService.isLoggedinState = value;
     })
     this.userDeviceType = this.userAgentService.getDeviceType();
-    if (this.userDeviceType === 'Desktop')
-      this.router.navigate(['/d']);
-    else
-      this.router.navigate(['/m']);
+    if (this.userDeviceType !== 'Desktop')
+      window.location.href = 'http://localhost:4200/m';
   }
 
 }
