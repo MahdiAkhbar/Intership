@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { UserAgentService } from '../services/user-agent.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +8,7 @@ import { UserAgentService } from '../services/user-agent.service';
 class AuthGuard {
   constructor(
     private authService: AuthService,
-    private router: Router,
-    private userAgentService: UserAgentService
+    private router: Router
   ) { }
 
   loggedIn: boolean = false;
@@ -23,13 +21,7 @@ class AuthGuard {
     }
     else {
       if (!route.routeConfig?.path?.includes('signup')) {
-        let userAgent = this.userAgentService.getDeviceType();
-        if (userAgent === 'Desktop') {
-          this.router.navigate(['/d/login']);
-        }
-        else {
-          this.router.navigate(['/m/login']);
-        }
+        this.router.navigate(['/d/login']);
       }
       return false;
     }
