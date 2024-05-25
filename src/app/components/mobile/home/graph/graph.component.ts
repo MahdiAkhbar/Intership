@@ -1,6 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { IGraphType } from '../../../../shared/interfaces/graphType';
+import { ApexAxisChartSeries, ApexChart, ApexXAxis, ChartComponent } from 'ng-apexcharts';
+import { StockService } from '../../../../shared/services/stock.service';
+import { interval, mergeMap, startWith, switchMap } from 'rxjs';
+
+export type ChartOptions = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  xaxis: ApexXAxis;
+};
 
 @Component({
   selector: 'app-graph',
@@ -8,6 +17,10 @@ import { IGraphType } from '../../../../shared/interfaces/graphType';
   styleUrl: './graph.component.css'
 })
 export class GraphComponent implements OnInit {
+
+  constructor(
+    private stockService: StockService
+  ) { }
 
   graphType: IGraphType[] = [
     { value: 'line', viewValue: 'خطی' },
@@ -26,21 +39,59 @@ export class GraphComponent implements OnInit {
     { value: 'shami-3', viewValue: '۱ ساعت' }
   ];
 
-  chartData = [
-    { month: 'فروردین', value: '800' },
-    { month: 'اردیبهشت', value: '500' },
-    { month: 'خرداد', value: '100' },
-    { month: 'تیر', value: '300' },
-  ]
+  chartData = []
 
   sellectedGraphType: any = this.graphType[0].value;
   sellectedGraphDuration: string = this.graphDuration[0].value;
   sellectedGraphTimeframe: string = this.graphTimeframe[0].value;
 
-  public chart: any;
+  @ViewChild('chart', { static: true }) chart!: ChartComponent;
+  // public chartOptions!: Partial<ChartOptions>;
+  public chartOptions: ChartOptions = {
+    series: [],
+    chart: {
+      type: 'line'
+    },
+    xaxis: {}
+  };
 
   ngOnInit(): void {
-
+    this.stockService.insCode.pipe(
+      switchMap((ins) => interval(5 * 60 * 1000).pipe(
+        startWith(0),
+        mergeMap(() => this.stockService.getChartInfo(ins))
+      ))
+    ).subscribe(res => {
+      let data: number[] = [];
+      let axis: Date[] = [];
+      res.forEach(item => {
+        let time = item.eventClock;
+        let s = time % 100;
+        time = Math.floor(time / 100);
+        let m = time % 100;
+        time = Math.floor(time / 100);
+        let h = time;
+        let date = new Date();
+        date.setHours(h);
+        date.setMinutes(m);
+        date.setSeconds(s);
+        data.push(item.closePrice);
+        axis.push(date);
+      });
+      this.chartOptions = {
+        series: [
+          {
+            data: data
+          }
+        ],
+        chart: {
+          type: 'line'
+        },
+        xaxis: {
+          categories: axis
+        }
+      }
+    });
   }
 
 

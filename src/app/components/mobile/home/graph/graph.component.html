@@ -28,5 +28,11 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div class="graph"></div>
+  <div class="graph">
+    <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [xaxis]="chartOptions.xaxis"
+    ></apx-chart>
+  </div>
 </div>
