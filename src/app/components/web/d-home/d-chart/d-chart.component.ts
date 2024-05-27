@@ -84,7 +84,6 @@ export class DChartComponent implements OnInit, OnDestroy {
         mergeMap(() => this.stockService.getChartInfo(ins))
       ))
     ).subscribe((res) => {
-      console.log(res)
       if (this.root)
         this.root.dispose();
       this.chartData = [];
