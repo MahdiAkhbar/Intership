@@ -41,6 +41,24 @@ export class DInfoComponent implements OnInit {
     tradesVolume: 0,
     tradesValue: 0
   };
+  stockLastTrade: ILastTrade = {
+    symbol: '',
+    eventDate: 0,
+    tradesCount: 2194,
+    tradesVolume: 0,
+    tradesValue: 0,
+    insCode: '',
+    company: '',
+    closePrice: 0,
+    finalTradePrice: 0,
+    priceChange: 0,
+    minPrice: 0,
+    maxPrice: 0,
+    firstPrice: 0,
+    priceYesterday: 0,
+    lastStatus: 0,
+    eventClock: 0
+  };
 
   @ViewChild('search', { static: true }) search!: ElementRef;
 
@@ -55,6 +73,16 @@ export class DInfoComponent implements OnInit {
       this.selectedStock = res;
       this.r2.setProperty(this.search.nativeElement, 'value', res.symbol);
       this.search.nativeElement.focus();
+    });
+
+    this.stockService.insCode.pipe(
+      distinctUntilChanged(),
+      switchMap((ins) => interval(5 * 60 * 1000).pipe(
+        startWith(0),
+        mergeMap(() => this.stockService.getLastTrade(ins))
+      ))
+    ).subscribe(res => {
+      this.stockLastTrade = res;
     });
 
 

@@ -67,7 +67,7 @@
   <div class="flex align-center p-2 mb-2 last-exchange">
     <!-- company name -->
     <div class="stock-company-name">
-      {{ selectedStock.companyName }}
+      {{ stockLastTrade.company }}
     </div>
     <!-- laset trade info -->
     <div class="last-trade-info">
@@ -75,7 +75,7 @@
         <p class="text last-trade-title">آخرین معامله</p>
       </div>
       <div class="flex align-center">
-        <p class="last-price">{{ selectedStock.finalTradePrice }}</p>
+        <p class="last-price">{{ stockLastTrade.finalTradePrice }}</p>
       </div>
     </div>
   </div>
@@ -83,38 +83,35 @@
   <div class="grid grid-2 info-box">
     <div class="flex justify-between info-items bg-gray">
       <p>حجم معاملات</p>
-      <p>{{ selectedStock.tradesVolume }}</p>
+      <p>{{ stockLastTrade.tradesVolume }}</p>
     </div>
     <div class="flex justify-between info-items bg-gray">
       <p>قیمت پایانی</p>
-      <p>{{ selectedStock.closePrice }}</p>
+      <p>{{ stockLastTrade.closePrice }}</p>
     </div>
     <div class="flex justify-between info-items">
       <p>تعداد معاملات</p>
-      <p>{{ selectedStock.tradesCount }}</p>
+      <p>{{ stockLastTrade.tradesCount }}</p>
     </div>
     <div class="flex justify-between info-items">
-      <p>قیمت دیروز</p>
-      <p>{{ selectedStock.firstPrice }}</p>
+      <p>اولین قیمت</p>
+      <p>{{ stockLastTrade.firstPrice }}</p>
     </div>
     <div class="flex justify-between info-items bg-gray">
       <p>ارزش معاملات</p>
-      <p>{{ selectedStock.tradesValue }}</p>
+      <p>{{ stockLastTrade.tradesValue }}</p>
     </div>
     <div class="flex justify-between info-items bg-gray">
-      <p>بازه فردا</p>
-      <p>
-        {{ selectedStock.minAllowedPrice }} -
-        {{ selectedStock.maxAllowedPrice }}
-      </p>
+      <p>قیمت دیروز</p>
+      <p>{{ stockLastTrade.priceYesterday }}</p>
     </div>
     <div class="flex justify-between info-items">
       <p>حجم مبنا</p>
       <p>{{ selectedStock.baseVolume }}</p>
     </div>
     <div class="flex justify-between info-items">
-      <p>بازه هفته</p>
-      <p>موجود نیست</p>
+      <p>بازه روز</p>
+      <p>{{ stockLastTrade.maxPrice }} - {{ stockLastTrade.minPrice }}</p>
     </div>
     <div class="flex justify-between info-items bg-gray">
       <p>نوع بازار</p>
