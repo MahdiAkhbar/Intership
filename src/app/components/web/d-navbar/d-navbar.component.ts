@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../shared/services/auth.service';
 import { UserService } from '../../../shared/services/user.service';
 import { IUser } from '../../../shared/interfaces/user.interface';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-d-navbar',
@@ -25,9 +26,15 @@ export class DNavbarComponent implements OnInit {
     favorites: [],
     notes: []
   };
+  date!: string;
+  time!: string;
 
   ngOnInit(): void {
     this.user = this.userService.getUser();
+    interval(1000).subscribe(() => {
+      this.date = new Date().toLocaleDateString('fa-IR');
+      this.time = new Date().toLocaleTimeString('fa-IR');
+    })
   }
 
   logout() {
