@@ -29,25 +29,37 @@ export class DSignupComponent implements OnInit {
   }
 
   onSubmit() {
-    if (!this.signupForm.valid)
-      return;
     this.errorMessage = '';
-    this.isLoading = true;
+    let formControls = this.signupForm.controls;
+    if (!formControls['username'].touched)
+      this.signupForm.controls['username'].markAsTouched();
+    if (!formControls['firstName'].touched)
+      this.signupForm.controls['firstName'].markAsTouched();
+    if (!formControls['lastName'].touched)
+      this.signupForm.controls['lastName'].markAsTouched();
+    if (!formControls['email'].touched)
+      this.signupForm.controls['email'].markAsTouched();
+    if (!formControls['password'].touched)
+      this.signupForm.controls['password'].markAsTouched();
 
-    this.authService.signup({ ...this.signupForm.value }).pipe(
-      catchError((err) => {
-        this.errorMessage = err;
+    if (this.signupForm.valid) {
+      this.isLoading = true;
+
+      this.authService.signup({ ...this.signupForm.value }).pipe(
+        catchError((err) => {
+          this.errorMessage = err;
+          this.isLoading = false;
+          return throwError(() => err);
+        })
+      ).subscribe(() => {
+        this.signupForm.reset();
         this.isLoading = false;
-        return throwError(() => err);
-      })
-    ).subscribe(() => {
-      this.signupForm.reset();
-      this.isLoading = false;
-      this.successSignupMsg = 'ثبت نام موفقیت آمیز \n لطفا وارد شوید';
-      setTimeout(() => {
-        this.router.navigate(['/d', 'login']);
-      }, 2000);
-    })
+        this.successSignupMsg = 'ثبت نام موفقیت آمیز \n لطفا وارد شوید';
+        setTimeout(() => {
+          this.router.navigate(['/d', 'login']);
+        }, 2000);
+      });
+    }
   }
 
   goToLogin() {
