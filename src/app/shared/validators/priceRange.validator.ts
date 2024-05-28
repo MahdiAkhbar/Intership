@@ -1,12 +1,12 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 
-export function minlengthValidator(): ValidatorFn {
+export function priceRangeValidator(min: number, max: number): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
         const value = control.value;
 
         if (!value)
             return null;
 
-        return value.length >= 6 ? null : { minlength: true };
+        return (min <= value && value <= max) ? null : { priceRange: true };
     }
 }
