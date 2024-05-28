@@ -176,7 +176,7 @@
           </linearGradient>
         </defs>
       </svg>
-      <p class="title-text">ایجاد به حساب کاربری</p>
+      <p class="title-text">ایجاد حساب کاربری</p>
     </div>
     <div class="error-msg alert alert-danger" *ngIf="errorMessage">
       <p>{{ errorMessage }}</p>
@@ -346,15 +346,15 @@
           </ng-template>
         </div>
 
-        <button type="submit" class="submit-btn">ورود</button>
+        <button type="submit" class="submit-btn">ثبت نام</button>
       </form>
       <div class="alert alert-success" *ngIf="successSignupMsg">
         <p>{{ successSignupMsg }}</p>
       </div>
     </div>
     <div class="hint flex align-center flex-gap-4">
-      <p>حساب کاربری ندارید؟</p>
-      <a (click)="goToLogin()" class="signup-text">ثبت نام کنید</a>
+      <p>قبلا ثبت نام کرده اید؟</p>
+      <a (click)="goToLogin()" class="signup-text">وارد شوید</a>
     </div>
   </div>
 </div>
