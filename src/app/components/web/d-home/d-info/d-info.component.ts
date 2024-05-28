@@ -63,6 +63,9 @@ export class DInfoComponent implements OnInit {
   @ViewChild('search', { static: true }) search!: ElementRef;
 
   ngOnInit(): void {
+    this.stockService.searchFocus.subscribe(() => {
+      this.search.nativeElement.focus();
+    })
     this.stockService.insCode.pipe(
       distinctUntilChanged(),
       switchMap((ins) => interval(5 * 60 * 1000).pipe(

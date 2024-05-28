@@ -24,6 +24,7 @@ export class StockService {
   mazannehMaxSupplyVolume!: number;
   mazannehMaxDemandVolume!: number;
   stockLastTrade: Subject<{ min: number, max: number }> = new Subject();
+  searchFocus: Subject<boolean> = new Subject();
 
   search(arg: string) {
     return this.http.get<ISearch[]>(this.apiUrl + '/tse/search/' + arg);
