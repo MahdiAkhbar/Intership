@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { ISearch } from '../interfaces/search.interface';
 import { IStock } from '../interfaces/stock-info.interface';
-import { BehaviorSubject, take, tap } from 'rxjs';
+import { BehaviorSubject, Subject, take, tap } from 'rxjs';
 import { ILastTrade } from '../interfaces/stock-last-trade.interface';
 import { IMazanneh } from '../interfaces/mazanneh';
 import { UserService } from './user.service';
@@ -23,6 +23,7 @@ export class StockService {
   insCode: BehaviorSubject<string> = new BehaviorSubject(this.lastInsCode);
   mazannehMaxSupplyVolume!: number;
   mazannehMaxDemandVolume!: number;
+  stockLastTrade: Subject<{ min: number, max: number }> = new Subject();
 
   search(arg: string) {
     return this.http.get<ISearch[]>(this.apiUrl + '/tse/search/' + arg);
@@ -53,7 +54,13 @@ export class StockService {
 
   getLastTrade(ins: string) {
     return this.http.get<ILastTrade>(this.apiUrl + '/tse/stock_last_trade/' + ins).pipe(
-      take(1)
+      take(1),
+      tap((data) => {
+        this.stockLastTrade.next({
+          min: data.minPrice,
+          max: data.maxPrice
+        });
+      })
     );
   }
 
