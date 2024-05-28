@@ -41,6 +41,10 @@ tbody tr {
     background-color: #fff;
 }
 
+.table-body .table-data-row:hover {
+    background-color: #e0e5e8;
+}
+
 .light-text {
     color: #777;
 }
