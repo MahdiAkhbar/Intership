@@ -1,3 +1,19 @@
+ul {
+    padding: 0;
+}
+
 .d-login {
     position: relative;
+}
+
+.valid {
+    color: #2b8a3e;
+    background-color: #b2F2BB;
+    padding: .4rem .8rem;
+}
+
+.invalid {
+    color: #c92a2a;
+    background-color: #ffc9c9;
+    padding: .4rem .8rem;
 }

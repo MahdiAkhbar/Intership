@@ -301,7 +301,8 @@
           <p
             class="invalid-value"
             *ngIf="
-              signupForm.controls['password'].touched &&
+              (signupForm.controls['password'].touched ||
+                signupForm.controls['password'].dirty) &&
                 (signupForm.controls['password'].value === '' ||
                   signupForm.controls['password'].value === null);
               else wrongPassMessages
@@ -311,34 +312,47 @@
           </p>
           <ng-template #wrongPassMessages>
             <ul
-              class="invalid-value"
+              [ngClass]="{
+                'invalid-value': !signupForm.controls['password'].valid,
+                'valid-value': signupForm.controls['password'].valid
+              }"
               *ngIf="
-                (signupForm.controls['password'].touched &&
-                  !signupForm.controls['password'].valid) ||
-                (signupForm.controls['password'].dirty &&
-                  !signupForm.controls['password'].valid)
+                signupForm.controls['password'].touched ||
+                signupForm.controls['password'].dirty
               "
             >
               <li
-                *ngIf="signupForm.controls['password'].errors?.['passwordStrength'].hasLowerCase"
+                [ngClass]="{
+                  'valid': !signupForm.controls['password'].errors?.['passwordStrength'].hasLowerCase,
+                  'invalid': signupForm.controls['password'].errors?.['passwordStrength'].hasLowerCase
+                  }"
               >
                 حداقل از یک حرف کوچک باید استفاده شود
               </li>
 
               <li
-                *ngIf="signupForm.controls['password'].errors?.['passwordStrength'].hasUpperCase"
+                [ngClass]="{
+                'valid': !signupForm.controls['password'].errors?.['passwordStrength'].hasUpperCase,
+                'invalid': signupForm.controls['password'].errors?.['passwordStrength'].hasUpperCase
+                }"
               >
                 حداقل از یک حرف بزرگ باید استفاده شود
               </li>
 
               <li
-                *ngIf="signupForm.controls['password'].errors?.['passwordStrength'].hasNumeric"
+                [ngClass]="{
+                  'valid': !signupForm.controls['password'].errors?.['passwordStrength'].hasNumeric,
+                  'invalid': signupForm.controls['password'].errors?.['passwordStrength'].hasNumeric
+                  }"
               >
                 حداقل از یک عدد باید استفاده شود
               </li>
 
               <li
-                *ngIf="signupForm.controls['password'].errors?.['passwordStrength'].charLength"
+                [ngClass]="{
+                  'valid': !signupForm.controls['password'].errors?.['passwordStrength'].charLength,
+                  'invalid': signupForm.controls['password'].errors?.['passwordStrength'].charLength
+                  }"
               >
                 حداقل باید ۶ کاراکتر وارد شود
               </li>
