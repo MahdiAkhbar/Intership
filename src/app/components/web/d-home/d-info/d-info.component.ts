@@ -115,6 +115,13 @@ export class DInfoComponent implements OnInit {
       }, 200);
     });
 
+    fromEvent(window, 'keyup').pipe(
+      map(event => event as KeyboardEvent)
+    ).subscribe((data) => {
+      if (data.key === 'Escape')
+        this.isFocus = false;
+    })
+
   }
 
   onSelectSearchItem(val: ISearch) {
