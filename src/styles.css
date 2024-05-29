@@ -402,6 +402,20 @@ input::placeholder {
     height: 100%;
 }
 
+.green-box {
+    width: 1rem;
+    height: 1rem;
+    background-color: #38D9A9;
+    margin-right: 1rem;
+}
+
+.red-box {
+    width: 1rem;
+    height: 1rem;
+    background-color: #ff8787;
+    margin-right: 1rem;
+}
+
 
 /* HELPERS */
 
