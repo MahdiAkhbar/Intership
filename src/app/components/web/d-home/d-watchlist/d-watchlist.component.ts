@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { IWatchlist } from '../../../../shared/interfaces/watchList';
 import { WatchListService } from '../../../../shared/services/watch-list.service';
 import { UserService } from '../../../../shared/services/user.service';
-import { interval, mergeMap, startWith, switchMap, take } from 'rxjs';
+import { catchError, interval, mergeMap, startWith, switchMap, take, throwError } from 'rxjs';
 import { StockService } from '../../../../shared/services/stock.service';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-d-watchlist',
@@ -15,13 +16,17 @@ export class DWatchlistComponent implements OnInit {
   constructor(
     private watchListService: WatchListService,
     private userService: UserService,
-    private stockService: StockService
+    private stockService: StockService,
+    private snackBar: MatSnackBar
   ) { }
 
   category: string = 'خودرو';
   searchInput: string = '';
   watchListCategory: string[] = ['خودرو', 'فلز', 'دارو',];
   watchList: IWatchlist[] = [];
+
+  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   // watchList: IWatchlist[] = [
   //   {
@@ -281,8 +286,26 @@ export class DWatchlistComponent implements OnInit {
       for (let i = 0; i < this.watchList.length; i++)
         if (this.watchList[i].insCode === item.insCode)
           flag = false;
-      if (flag)
-        this.watchList.push(item);
+      if (flag) {
+        this.watchListService.addToWatchList(item).pipe(
+          take(1),
+          catchError((err) => {
+            this.snackBar.open('مشکلی پیش آمده. دوباره تلاش کنید!', 'بستن', {
+              horizontalPosition: this.horizontalPosition,
+              verticalPosition: this.verticalPosition,
+              duration: 5000
+            });
+            return throwError(() => err);
+          })
+        ).subscribe(() => {
+          this.watchList.push(item);
+          this.snackBar.open('نماد با موفقیت به دیده‌بان اضافه شد', 'بستن', {
+            horizontalPosition: this.horizontalPosition,
+            verticalPosition: this.verticalPosition,
+            duration: 3000
+          });
+        })
+      }
     })
 
     this.watchListService.removeWatchListSubject.subscribe(item => {
