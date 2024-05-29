@@ -122,7 +122,6 @@
 }
 
 .label-container {
-    width: 20%;
     height: 100%;
     display: flex;
     justify-content: space-between;
@@ -130,8 +129,8 @@
 }
 
 .exclamation-icon {
-    width: 20px;
-    height: 20px;
+    width: 2rem;
+    height: 2rem;
 }
 
 .input-total-price {
