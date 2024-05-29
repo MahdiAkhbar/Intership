@@ -23,6 +23,7 @@
   </div>
   <form
     [formGroup]="tradeForm"
+    (ngSubmit)="onSubmit()"
     class="form-container h-100 flex flex-column h-100"
   >
     <div class="form-inputs flex flex-column h-100">
@@ -91,6 +92,7 @@
             placeholder="0"
             name="price"
             formControlName="price"
+            required
           />
         </div>
       </div>
@@ -138,6 +140,7 @@
             placeholder="0"
             name="count"
             formControlName="count"
+            required
           />
         </div>
       </div>

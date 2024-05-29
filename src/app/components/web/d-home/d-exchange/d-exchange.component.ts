@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { StockService } from '../../../../shared/services/stock.service';
 import { priceRangeValidator } from '../../../../shared/validators/priceRange.validator';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-d-exchange',
@@ -10,7 +11,8 @@ import { priceRangeValidator } from '../../../../shared/validators/priceRange.va
 })
 export class DExchangeComponent {
   constructor(
-    private stockService: StockService
+    private stockService: StockService,
+    private snackBar: MatSnackBar
   ) { }
 
   isBuyMode: boolean = true;
@@ -22,11 +24,15 @@ export class DExchangeComponent {
   });
   priceRange!: { min: number, max: number };
   priceTooltipMessage!: string;
+  submitIsLoading: boolean = false;
+
+  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   ngOnInit(): void {
     this.stockService.stockLastTrade.subscribe(data => {
       this.priceRange = data;
-      this.priceTooltipMessage = `قیمت سفارش نمیتواند خارج از محدوده ( ${data.max} - ${data.min} ) باشد`
+      this.priceTooltipMessage = `قیمت سفارش نمیتواند خارج از محدوده ( ${data.max} - ${data.min} ) باشد`;
 
       this.tradeForm = new FormGroup({
         price: new FormControl(0, priceRangeValidator(this.priceRange.min, this.priceRange.max)),
@@ -39,6 +45,26 @@ export class DExchangeComponent {
   formType(val: boolean) {
     this.isBuyMode = val;
   }
+
+  onSubmit() {
+    let f = this.tradeForm.controls;
+    if (f['price'].valid && f['count'].value > 0) {
+      console.log('ok');
+      this.submitIsLoading = true;
+      setTimeout(() => {
+        this.snackBar.open('سفارش باموفقیت ارسال شد', 'بستن', {
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+          duration: 5000
+        })
+        this.tradeForm.reset();
+        this.submitIsLoading = false;
+      }, 3000);
+    }
+    else
+      return;
+  }
+
 
   increasePrice() {
     if (!this.tradeForm.get('price')?.value || this.tradeForm.get('price')?.value < this.priceRange.min)
