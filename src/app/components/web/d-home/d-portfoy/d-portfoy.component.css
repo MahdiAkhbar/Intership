@@ -21,7 +21,14 @@ table {
     background-color: #E9ECEF;
     font-size: 1.2rem;
     font-weight: normal;
-    border-bottom: 2px solid #ADB5BD;
+    position: sticky;
+    top: 0;
+}
+
+.table-heade-border-bottom {
+    height: 2px;
+    width: 100%;
+    background-color: #ADB5BD;
 }
 
 .table-head-item-text {
