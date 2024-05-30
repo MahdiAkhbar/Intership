@@ -49,7 +49,6 @@ export class DExchangeComponent {
   onSubmit() {
     let f = this.tradeForm.controls;
     if (f['price'].valid && f['count'].value > 0) {
-      console.log('ok');
       this.submitIsLoading = true;
       setTimeout(() => {
         this.snackBar.open('سفارش باموفقیت ارسال شد', 'بستن', {
