@@ -23,7 +23,7 @@ export class DLoginComponent implements OnInit {
   successLoginMsg: string = '';
 
   ngOnInit(): void {
-    this.autoLogin();
+    // this.autoLogin();
     this.loginForm = new FormGroup({
       'username': new FormControl(null, Validators.required),
       'password': new FormControl(null, Validators.required),
