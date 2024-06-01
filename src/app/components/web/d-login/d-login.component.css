@@ -36,10 +36,16 @@
 .input {
     border: none;
     margin: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .input-box {
     background-color: #17191C;
     border: 1px solid #bbb;
-    padding-right: 1.2rem;
+    border-radius: .4rem;
+}
+
+.icons {
+    margin: 0 1.2rem;
 }
