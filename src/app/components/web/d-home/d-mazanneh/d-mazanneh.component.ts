@@ -35,10 +35,14 @@ export class DMazannehComponent implements OnInit {
   }
 
   getSupplyBackgroundWidth(val: number) {
+    if (this.maxSupplyVolume === 0)
+      return 0;
     return 100 * val / this.maxSupplyVolume;
   }
 
   getDemandBackgroundWidth(val: number) {
+    if (this.maxDemandVolume === 0)
+      return 0;
     return 100 * val / this.maxDemandVolume;
   }
 
