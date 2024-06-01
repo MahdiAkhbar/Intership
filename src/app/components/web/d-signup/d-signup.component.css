@@ -4,6 +4,7 @@ ul {
 
 .d-login {
     position: relative;
+    background-image: none;
 }
 
 .valid {
@@ -16,4 +17,14 @@ ul {
     color: #c92a2a;
     background-color: #ffc9c9;
     padding: .4rem .8rem;
+}
+
+.d-signup-background {
+    height: 100vh;
+    background-image: url(../../../../assets/img/background3-min.webp);
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
 }
