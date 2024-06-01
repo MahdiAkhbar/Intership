@@ -13,6 +13,7 @@ export class DesktopComponent implements OnInit {
 
   ngOnInit(): void {
     let ins = this.stockService.getInsCode();
+    this.stockService.setInsCode(ins);
     this.stockService.insCode.next(ins);
   }
 
