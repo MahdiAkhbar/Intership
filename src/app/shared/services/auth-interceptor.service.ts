@@ -1,10 +1,9 @@
-import { Inject, Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { catchError, switchMap, throwError } from 'rxjs';
-import { ILogin } from '../interfaces/loginform.interface';
 import { ActivatedRoute } from '@angular/router';
 
 @Injectable()
@@ -12,9 +11,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
     private authService: AuthService,
-    private http: HttpClient,
-    private route: ActivatedRoute,
-    @Inject('API_URL') private apiUrl: string
+    private route: ActivatedRoute
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

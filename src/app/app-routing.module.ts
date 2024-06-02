@@ -10,7 +10,7 @@ import { DesktopComponent } from './components/web/desktop.component';
 
 const routes: Routes = [
   {
-    path: '', component: DesktopComponent, pathMatch: 'full', children: [
+    path: '', component: DesktopComponent, children: [
       { path: '', redirectTo: 'd', pathMatch: 'full' },
       {
         path: 'd', component: DHomeComponent, canActivate: [authGuard], children: [
