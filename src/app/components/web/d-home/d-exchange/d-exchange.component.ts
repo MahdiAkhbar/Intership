@@ -56,7 +56,11 @@ export class DExchangeComponent {
           verticalPosition: this.verticalPosition,
           duration: 5000
         })
-        this.tradeForm.reset();
+        this.tradeForm.setValue({
+          price: 0,
+          count: 0,
+          totalPrice: 0
+        });
         this.submitIsLoading = false;
       }, 3000);
     }
