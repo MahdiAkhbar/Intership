@@ -161,6 +161,9 @@ label {
 
 .btn-submit {
     border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn-buy-fill.btn-submit:hover {
@@ -169,4 +172,9 @@ label {
 
 .btn-sell-fill.btn-submit:hover {
     background-color: #f03e3e;
+}
+
+.btn-submit-disabled.btn-submit,
+.btn-submit-disabled.btn-submit:hover {
+    background-color: #96f2d7;
 }
