@@ -48,6 +48,7 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { AuthInterceptor } from './shared/services/auth-interceptor.service';
 import { WatchlistItemComponent } from './components/web/d-home/d-watchlist/watchlist-item/watchlist-item.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     MatInputModule,
     HttpClientModule,
     MatTooltipModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     provideAnimationsAsync(),

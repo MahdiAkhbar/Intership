@@ -164,12 +164,19 @@
         <button
           type="submit"
           class="btn-c btn-submit"
+          [disabled]="submitIsLoading"
           [ngClass]="{
             'btn-buy-fill': isBuyMode,
-            'btn-sell-fill': !isBuyMode
+            'btn-sell-fill': !isBuyMode,
+            'btn-submit-disabled': submitIsLoading
           }"
         >
-          ارسال
+          <p *ngIf="!submitIsLoading">ارسال</p>
+          <mat-spinner
+            *ngIf="submitIsLoading"
+            [diameter]="30"
+            style="display: inline-block"
+          ></mat-spinner>
         </button>
       </div>
     </div>
