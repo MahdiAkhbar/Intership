@@ -306,6 +306,13 @@ export class DWatchlistComponent implements OnInit {
           });
         })
       }
+      else {
+        this.snackBar.open('نماد قبلا به دیده‌بان اضافه شده است', 'بستن', {
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+          duration: 3000
+        });
+      }
     })
 
     this.watchListService.removeWatchListSubject.subscribe(item => {
